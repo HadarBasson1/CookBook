@@ -60,8 +60,63 @@
             android:fontFamily="@font/roboto_medium"
             android:text="Edit My Profile"
             android:textColor="#E85D04"
-            tools:layout_editor_absoluteX="88dp"
-            tools:layout_editor_absoluteY="462dp" />
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.245"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            app:layout_constraintVertical_bias="0.031" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="51dp"
+            android:layout_height="52dp"
+            android:layout_marginTop="60dp"
+            android:src="@drawable/cookingbook"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.488"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/UserName"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_medium"
+            android:text="My Recipese"
+            android:textColor="#E85D04"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView7"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="61dp"
+            android:layout_height="57dp"
+            android:src="@drawable/cookies"
+            tools:layout_editor_absoluteX="248dp"
+            tools:layout_editor_absoluteY="554dp" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_medium"
+            android:text="All Recipes"
+            android:textColor="#FFBA08"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.727"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView3"
+            app:layout_constraintVertical_bias="0.07" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
