@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/Login"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/Login_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/yanone_kaffeesatz_bold"
+        android:text="CookBook"
+        android:textColor="#FAA307"
+        android:textSize="71sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.152" />
+
+    <EditText
+        android:id="@+id/Login_email_input"
+        android:layout_width="263dp"
+        android:layout_height="48dp"
+        android:background="#DFDDDD"
+        android:backgroundTint="#DFDDDD"
+        android:ems="10"
+        android:hint="Enter your email address"
+        android:inputType="textEmailAddress"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Login_title"
+        app:layout_constraintVertical_bias="0.162" />
+
+    <TextView
+        android:id="@+id/Login_email_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="Email"
+        android:textColor="#FAA307"
+        app:layout_constraintBottom_toTopOf="@+id/Login_email_input"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.196"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/Login_password_input"
+        android:layout_width="263dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="328dp"
+        android:background="#DFDDDD"
+        android:backgroundTint="#DFDDDD"
+        android:ems="10"
+        android:hint="Enter your password"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_medium"
+        android:text="Password"
+        android:textColor="#FAA307"
+        app:layout_constraintBottom_toTopOf="@+id/Login_password_input"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.212"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Login_email_input"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/Login_login_button"
+        android:layout_width="264dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="36dp"
+        android:backgroundTint="#F9A207"
+        android:fontFamily="@font/roboto_medium"
+        android:text="Log In"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Login_password_input" />
+
+    <Button
+        android:id="@+id/Login_signup_button"
+        android:layout_width="263dp"
+        android:layout_height="53dp"
+        android:background="#6A040F"
+
+        android:fontFamily="@font/roboto_medium"
+        android:text="Sing Up"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Login_login_button"
+        app:layout_constraintVertical_bias="0.136" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
