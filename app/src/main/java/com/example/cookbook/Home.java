@@ -3,16 +3,19 @@ package com.example.cookbook;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Home#newInstance} factory method to
- * create an instance of this fragment.
- */
+///**
+// * A simple {@link Fragment} subclass.
+// * Use the {@link Home#newInstance} factory method to
+// * create an instance of this fragment.
+
 public class Home extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
@@ -59,6 +62,16 @@ public class Home extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        View view= inflater.inflate(R.layout.fragment_home, container, false);
+        ImageView edit_btn = view.findViewById(R.id.home_edit_profile_btn);
+        edit_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigate(R.id.action_home2_to_editUser);
+            }
+        });
+
+        return view;
+
     }
 }
