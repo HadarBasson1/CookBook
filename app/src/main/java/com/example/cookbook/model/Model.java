@@ -18,7 +18,7 @@ public class Model {
 
     private Executor executor = Executors.newSingleThreadExecutor();
     private Handler mainHandler = HandlerCompat.createAsync(Looper.getMainLooper());
-//    private FirebaseModel firebaseModel = new FirebaseModel();
+    private FirebaseModel firebaseModel = new FirebaseModel();
     AppLocalDbRepository localDb = AppLocalDb.getAppDb();
 
     public static Model instance(){
@@ -49,38 +49,38 @@ public class Model {
     }
 
     public void refreshAllRecipes(){
-//        EventStudentsListLoadingState.setValue(LoadingState.LOADING);
-//        // get local last update
-//        Long localLastUpdate = Recipe.getLocalLastUpdate();
-//        // get all updated recorde from firebase since local last update
-//        firebaseModel.getAllStudentsSince(localLastUpdate,list->{
-//            executor.execute(()->{
-//                Log.d("TAG", " firebase return : " + list.size());
-//                Long time = localLastUpdate;
-//                for(Student st:list){
-//                    // insert new records into ROOM
-//                    localDb.studentDao().insertAll(st);
-//                    if (time < st.getLastUpdated()){
-//                        time = st.getLastUpdated();
-//                    }
-//                }
-//                try {
-//                    Thread.sleep(3000);
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
-//                // update local last update
-//                Student.setLocalLastUpdate(time);
-//                EventStudentsListLoadingState.postValue(LoadingState.NOT_LOADING);
-//            });
-//        });
+        EventStudentsListLoadingState.setValue(LoadingState.LOADING);
+        // get local last update
+        Long localLastUpdate = Recipe.getLocalLastUpdate();
+        // get all updated recorde from firebase since local last update
+        firebaseModel.getAllRecipesSince(localLastUpdate,list->{
+            executor.execute(()->{
+                Log.d("TAG", " firebase return : " + list.size());
+                Long time = localLastUpdate;
+                for(Recipe recipe:list){
+                    // insert new records into ROOM
+                    localDb.recipeDao().insertAll(recipe);
+                    if (time < recipe.getLastUpdated()){
+                        time = recipe.getLastUpdated();
+                    }
+                }
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                // update local last update
+                Recipe.setLocalLastUpdate(time);
+                EventStudentsListLoadingState.postValue(LoadingState.NOT_LOADING);
+            });
+        });
     }
 
     public void addRecipe(Recipe recipe, Listener<Void> listener){
-//        firebaseModel.addStudent(st,(Void)->{
-//            refreshAllRecipes();
-//            listener.onComplete(null);
-//        });
+        firebaseModel.addRecipe(recipe,(Void)->{
+            refreshAllRecipes();
+            listener.onComplete(null);
+        });
     }
 
     public void uploadImage(String name, Bitmap bitmap, Listener<String> listener) {

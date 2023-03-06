@@ -47,12 +47,12 @@ public class RecipesList extends Fragment {
                 Log.d("TAG", "Row was clicked " + pos);
                 Recipe recipe = viewModel.getData().getValue().get(pos);
                 RecipesListDirections.ActionRecipesListToRecipePage action = RecipesListDirections.actionRecipesListToRecipePage(recipe.title);
-                Navigation.findNavController(view).navigate(action);
+                Navigation.findNavController(view).navigate((NavDirections) action);
             }
         });
 
-//        View addButton = view.findViewById(R.id.btnAdd);
-        NavDirections action =RecipesListDirections.actionGlobalRecipesList();
+        View addButton = view.findViewById(R.id.btnAdd);
+//        NavDirections action = RecipesListDirections.actionGlobalRecipesList();
 //        addButton.setOnClickListener(Navigation.createNavigateOnClickListener(action));
 
         binding.progressBar.setVisibility(View.GONE);

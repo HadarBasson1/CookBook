@@ -52,6 +52,8 @@ dependencies {
     annotationProcessor "androidx.room:room-compiler:$room_version"
 
     implementation platform('com.google.firebase:firebase-bom:31.2.3')
+    implementation 'com.google.firebase:firebase-firestore'
+
     implementation 'com.squareup.picasso:picasso:2.8'
 
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
