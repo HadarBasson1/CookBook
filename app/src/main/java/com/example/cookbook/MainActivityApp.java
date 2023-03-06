@@ -7,10 +7,8 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toolbar;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivityApp extends AppCompatActivity {
    NavController navController;
@@ -29,17 +27,31 @@ public class MainActivityApp extends AppCompatActivity {
 //        NavigationUI.setupWithNavController(navView,navController);
     }
 
+    int fragmentMenuId = 0;
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu,menu);
+        return super.onCreateOptionsMenu(menu);
+//        if (fragmentMenuId != 0){
+//            menu.removeItem(fragmentMenuId);
+//        }
+//        fragmentMenuId = 0;
+
+    }
+
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
         if (item.getItemId() == android.R.id.home) {
             navController.popBackStack();
         }
-//        else{
-//            fragmentMenuId = item.getItemId();
-//            return NavigationUI.onNavDestinationSelected(item,navController);
-//        }
+        else if(item.getItemId() == R.id.logout_menu){
+            finish();
+        }
+        else{
+            fragmentMenuId = item.getItemId();
+            return NavigationUI.onNavDestinationSelected(item,navController);
+        }
         return super.onOptionsItemSelected(item);
     }
 }

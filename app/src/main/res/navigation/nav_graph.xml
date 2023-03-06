@@ -4,20 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     android:label="Home"
-    app:startDestination="@id/home2">
+    app:startDestination="@id/home_fragment">
 
     <fragment
-        android:id="@+id/home2"
+        android:id="@+id/home_fragment"
         android:name="com.example.cookbook.Home"
         android:label="Home"
         tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_home2_to_editUser"
-            app:destination="@id/editUser" />
+            android:id="@+id/action_home_fragment_to_edit_user_fragment"
+            app:destination="@id/edit_user_fragment" />
     </fragment>
     <fragment
-        android:id="@+id/editUser"
+        android:id="@+id/edit_user_fragment"
         android:name="com.example.cookbook.EditUser"
         android:label="Edit User"
         tools:layout="@layout/fragment_edit_user" />
+    <action android:id="@+id/action_global_home_fragment" app:destination="@id/home_fragment" />
 </navigation>
