@@ -13,18 +13,18 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_image"
-            android:layout_width="wrap_content"
-            android:layout_height="250dp"
+            android:layout_width="379dp"
+            android:layout_height="205dp"
 
             android:src="@drawable/avatar"
             android:visibility="visible"
             app:civ_border_color="#FF000000"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.218"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.099" />
+            app:layout_constraintVertical_bias="0.095" />
 
         <TextView
             android:id="@+id/UserName"
@@ -48,10 +48,10 @@
             android:src="@drawable/pencil"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.245"
+            app:layout_constraintHorizontal_bias="0.184"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/UserName"
-            app:layout_constraintVertical_bias="0.178" />
+            app:layout_constraintVertical_bias="0.174" />
 
         <TextView
             android:id="@+id/textView7"
@@ -63,20 +63,21 @@
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.245"
+            app:layout_constraintHorizontal_bias="0.184"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/home_edit_profile_btn"
-            app:layout_constraintVertical_bias="0.031" />
+            app:layout_constraintVertical_bias="0.029" />
 
         <ImageView
             android:id="@+id/imageView2"
             android:layout_width="51dp"
             android:layout_height="52dp"
             android:layout_marginTop="60dp"
+            android:layout_marginEnd="20dp"
             android:src="@drawable/cookingbook"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.488"
+            app:layout_constraintHorizontal_bias="0.526"
             app:layout_constraintStart_toEndOf="@+id/home_edit_profile_btn"
             app:layout_constraintTop_toBottomOf="@+id/UserName"
             app:layout_constraintVertical_bias="0.0" />
@@ -91,36 +92,39 @@
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.512"
             app:layout_constraintStart_toEndOf="@+id/textView7"
             app:layout_constraintTop_toBottomOf="@+id/imageView2"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.02" />
 
         <ImageView
             android:id="@+id/imageView3"
             android:layout_width="61dp"
             android:layout_height="57dp"
+            android:layout_marginEnd="20dp"
             android:src="@drawable/cookies"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.708"
+            app:layout_constraintHorizontal_bias="0.712"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView8"
-            app:layout_constraintVertical_bias="0.476" />
+            app:layout_constraintVertical_bias="0.48" />
 
         <TextView
             android:id="@+id/textView9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
             android:fontFamily="@font/roboto_medium"
             android:text="All Recipes"
             android:textColor="#FFBA08"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.727"
+            app:layout_constraintHorizontal_bias="0.709"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView3"
-            app:layout_constraintVertical_bias="0.07" />
+            app:layout_constraintVertical_bias="0.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
