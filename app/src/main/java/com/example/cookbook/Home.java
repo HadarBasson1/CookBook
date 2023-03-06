@@ -69,12 +69,23 @@ public class Home extends Fragment {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_home, container, false);
         ImageView edit_btn = view.findViewById(R.id.home_edit_profile_btn);
+        ImageView my_recipes = view.findViewById(R.id.home_my_recipes_btn);
         edit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Navigation.findNavController(v).navigate(R.id.action_home_fragment_to_edit_user_fragment);
             }
         });
+
+
+        my_recipes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigate(R.id.action_home_fragment_to_recipesList);
+            }
+        });
+
+
 
         return view;
 

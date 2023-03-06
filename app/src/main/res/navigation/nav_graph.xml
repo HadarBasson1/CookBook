@@ -14,6 +14,9 @@
         <action
             android:id="@+id/action_home_fragment_to_edit_user_fragment"
             app:destination="@id/edit_user_fragment" />
+        <action
+            android:id="@+id/action_home_fragment_to_recipesList"
+            app:destination="@id/recipesList" />
     </fragment>
     <fragment
         android:id="@+id/edit_user_fragment"
@@ -24,8 +27,8 @@
     <fragment
         android:id="@+id/recipesList"
         android:name="com.example.cookbook.RecipesList"
-        android:label="fragment_recipe_list"
-        tools:layout="@layout/fragment_recipe_list" >
+        android:label="My Recipes "
+        tools:layout="@layout/fragment_recipe_list">
         <action
             android:id="@+id/action_recipesList_to_recipePage"
             app:destination="@id/recipePage" />

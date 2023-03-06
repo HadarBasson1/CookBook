@@ -7,6 +7,9 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.example.cookbook.MyApplication;
+import com.google.firebase.firestore.FieldValue;
+
 import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.Map;
@@ -121,27 +124,28 @@ public class Recipe {
     }
 
 //
-//    public static Long getLocalLastUpdate() {
-//        SharedPreferences sharedPref = MyApplication.getMyContext().getSharedPreferences("TAG", Context.MODE_PRIVATE);
-//        return sharedPref.getLong(LOCAL_LAST_UPDATED, 0);
-//    }
+    public static Long getLocalLastUpdate() {
+        SharedPreferences sharedPref = MyApplication.getMyContext().getSharedPreferences("TAG", Context.MODE_PRIVATE);
+        return sharedPref.getLong(LOCAL_LAST_UPDATED, 0);
+    }
 //
-//    public static void setLocalLastUpdate(Long time) {
-//        SharedPreferences sharedPref = MyApplication.getMyContext().getSharedPreferences("TAG", Context.MODE_PRIVATE);
-//        SharedPreferences.Editor editor = sharedPref.edit();
-//        editor.putLong(LOCAL_LAST_UPDATED,time);
-//        editor.commit();
-//    }
-//
-//    public Map<String,Object> toJson(){
-//        Map<String, Object> json = new HashMap<>();
-//        json.put(ID, getId());
-//        json.put(NAME, getName());
-//        json.put(AVATAR, getAvatarUrl());
-//        json.put(CB, getCb());
-//        json.put(LAST_UPDATED, FieldValue.serverTimestamp());
-//        return json;
-//    }
+    public static void setLocalLastUpdate(Long time) {
+        SharedPreferences sharedPref = MyApplication.getMyContext().getSharedPreferences("TAG", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putLong(LOCAL_LAST_UPDATED,time);
+        editor.commit();
+    }
+
+    public Map<String,Object> toJson(){
+        Map<String, Object> json = new HashMap<>();
+        json.put(TITLE, getTitle());
+        json.put(CATEGORY, getCategory());
+        json.put(DIFFICULTY, getDifficulty());
+        json.put(EDITOR, getEditor());
+        json.put(AVATAR, getImgUrl());
+        json.put(LAST_UPDATED, FieldValue.serverTimestamp());
+        return json;
+    }
 
 
 }
