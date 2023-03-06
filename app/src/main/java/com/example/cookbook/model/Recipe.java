@@ -14,6 +14,7 @@ import java.util.Map;
 @Entity
 public class Recipe {
     @PrimaryKey
+    @NonNull
     public String title="";
     public String category="";
     public String difficulty="";

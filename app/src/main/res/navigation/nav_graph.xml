@@ -21,4 +21,23 @@
         android:label="Edit User"
         tools:layout="@layout/fragment_edit_user" />
     <action android:id="@+id/action_global_home_fragment" app:destination="@id/home_fragment" />
+    <fragment
+        android:id="@+id/recipesList"
+        android:name="com.example.cookbook.RecipesList"
+        android:label="fragment_recipe_list"
+        tools:layout="@layout/fragment_recipe_list" >
+        <action
+            android:id="@+id/action_recipesList_to_recipePage"
+            app:destination="@id/recipePage" />
+    </fragment>
+    <action android:id="@+id/action_global_recipesList" app:destination="@id/recipesList" />
+    <fragment
+        android:id="@+id/recipePage"
+        android:name="com.example.cookbook.RecipePage"
+        android:label="fragment_recipe_page"
+        tools:layout="@layout/fragment_recipe_page" >
+        <argument
+            android:name="title"
+            app:argType="string" />
+    </fragment>
 </navigation>
