@@ -52,8 +52,8 @@ public class RecipesList extends Fragment {
         });
 
         View addButton = view.findViewById(R.id.btnAdd);
-//        NavDirections action = RecipesListDirections.actionGlobalRecipesList();
-//        addButton.setOnClickListener(Navigation.createNavigateOnClickListener(action));
+        NavDirections action = RecipesListDirections.actionGlobalAddRecipe();
+        addButton.setOnClickListener(Navigation.createNavigateOnClickListener(action));
 
         binding.progressBar.setVisibility(View.GONE);
 

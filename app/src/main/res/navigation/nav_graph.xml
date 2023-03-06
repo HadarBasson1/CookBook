@@ -43,4 +43,10 @@
             android:name="title"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/addRecipe"
+        android:name="com.example.cookbook.AddRecipe"
+        android:label="Add Recipe"
+        tools:layout="@layout/fragment_add_recipe" />
+    <action android:id="@+id/action_global_addRecipe" app:destination="@id/addRecipe" />
 </navigation>
