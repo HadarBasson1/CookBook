@@ -76,7 +76,7 @@ public class Model {
 //        });
     }
 
-    public void addStudent(Recipe st, Listener<Void> listener){
+    public void addRecipe(Recipe recipe, Listener<Void> listener){
 //        firebaseModel.addStudent(st,(Void)->{
 //            refreshAllRecipes();
 //            listener.onComplete(null);
