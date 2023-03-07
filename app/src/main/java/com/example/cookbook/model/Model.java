@@ -84,6 +84,6 @@ public class Model {
     }
 
     public void uploadImage(String name, Bitmap bitmap, Listener<String> listener) {
-//        firebaseModel.uploadImage(name,bitmap,listener);
+        firebaseModel.uploadImage(name,bitmap,listener);
     }
 }
