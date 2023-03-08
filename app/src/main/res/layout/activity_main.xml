@@ -29,6 +29,8 @@
         android:background="#DFDDDD"
         android:backgroundTint="#DFDDDD"
         android:ems="10"
+        android:textColor="#1C1F22"
+
         android:hint="Enter your email address"
         android:inputType="textEmailAddress"
 
@@ -62,6 +64,8 @@
         android:layout_marginBottom="328dp"
         android:background="#DFDDDD"
         android:backgroundTint="#DFDDDD"
+        android:textColor="#1C1F22"
+
         android:ems="10"
         android:hint="Enter your password"
         android:inputType="textPassword"

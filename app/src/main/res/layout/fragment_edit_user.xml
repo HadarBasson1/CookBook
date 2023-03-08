@@ -44,6 +44,7 @@
             android:backgroundTint="#DFDDDD"
             android:ems="10"
             android:hint="name"
+            android:textColor="#1C1F22"
             android:inputType="textPersonName"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -68,6 +69,8 @@
             android:id="@+id/editTextPhone"
             android:layout_width="290dp"
             android:layout_height="49dp"
+            android:textColor="#1C1F22"
+
             android:background="#DFDDDD"
             android:backgroundTint="#DFDDDD"
             android:ems="10"
@@ -97,6 +100,8 @@
             android:id="@+id/editTextTextPersonName2"
             android:layout_width="290dp"
             android:layout_height="49dp"
+            android:textColor="#1C1F22"
+
             android:background="#DFDDDD"
             android:backgroundTint="#DFDDDD"
             android:ems="10"
@@ -126,6 +131,8 @@
             android:layout_width="290dp"
             android:layout_height="49dp"
             android:background="#DFDDDD"
+            android:textColor="#1C1F22"
+
             android:backgroundTint="#DFDDDD"
             android:ems="10"
             android:hint="abc@gmail.com"
