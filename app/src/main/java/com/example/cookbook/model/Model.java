@@ -85,6 +85,13 @@ public class Model {
         });
     }
 
+    public void addUser(User user, Listener<Void> listener){
+        firebaseModel.addUser(user,(Void)->{
+//            refreshAllRecipes();
+            listener.onComplete(null);
+        });
+    }
+
     public void uploadImage(String name, Bitmap bitmap, Listener<String> listener) {
         firebaseModel.uploadImage(name,bitmap,listener);
     }

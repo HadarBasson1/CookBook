@@ -12,8 +12,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivityApp extends AppCompatActivity {
+//    String userid;
+//    FirebaseAuth aut;
    NavController navController;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,7 @@ public class MainActivityApp extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+//        userid=aut.getCurrentUser().getUid();
         if (item.getItemId() == android.R.id.home) {
             navController.popBackStack();
         }

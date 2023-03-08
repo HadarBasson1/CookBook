@@ -1,17 +1,28 @@
 package com.example.cookbook;
 
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.Navigation;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.cookbook.model.Model;
+import com.example.cookbook.model.Recipe;
+import com.example.cookbook.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -19,10 +30,21 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class Register extends AppCompatActivity {
-        EditText editTextEmail,editTextPassword;
+        EditText editTextEmail,editTextPassword,editTextPhone,editTextAddress,editTextName;
+        ImageView imageView;
         Button buttonReg;
         FirebaseAuth mAuth;
         ProgressBar progressBar;
+
+    ActivityResultLauncher<Void> cameraLauncher;
+    ActivityResultLauncher<String> galleryLauncher;
+
+    Boolean isAvatarSelected = false;
+
+//    String userid;
+//    FirebaseAuth aut;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,9 +53,31 @@ public class Register extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         editTextEmail=findViewById(R.id.register_email);
         editTextPassword=findViewById(R.id.regidter_password);
+        editTextPhone=findViewById(R.id.register_phone);
+        editTextAddress=findViewById(R.id.register_address);
+        editTextName=findViewById(R.id.register_username);
+        imageView=findViewById(R.id.register_img);
         buttonReg=findViewById(R.id.register_btn);
         progressBar = findViewById(R.id.register_progressbar);
 
+        cameraLauncher = registerForActivityResult(new ActivityResultContracts.TakePicturePreview(), new ActivityResultCallback<Bitmap>() {
+            @Override
+            public void onActivityResult(Bitmap result) {
+                if (result != null) {
+                    imageView.setImageBitmap(result);
+                    isAvatarSelected = true;
+                }
+            }
+        });
+        galleryLauncher = registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
+            @Override
+            public void onActivityResult(Uri result) {
+                if (result != null){
+                    imageView.setImageURI(result);
+                    isAvatarSelected = true;
+                }
+            }
+        });
 
 
 
@@ -41,11 +85,14 @@ public class Register extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 progressBar.setVisibility(View.VISIBLE);
-                String email, password;
+                String email, password,name,id,phon,address,imageurl;
+
                 email=String.valueOf(editTextEmail.getText());
                 password=String.valueOf(editTextPassword.getText());
-
-
+                name=String.valueOf(editTextName.getText());
+                phon=String.valueOf(editTextPhone.getText());
+                address=String.valueOf(editTextAddress.getText());
+                imageurl=null;
                 if(TextUtils.isEmpty(email)){
                     Toast.makeText(Register.this,"Enter Email",Toast.LENGTH_SHORT).show();
                     return;
@@ -66,6 +113,27 @@ public class Register extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     Toast.makeText(Register.this, "Account created.",
                                             Toast.LENGTH_SHORT).show();
+                                    //////save in cloud store
+                                    String user_id=mAuth.getUid();
+                                    User user = new User(name,user_id,phon,address,imageurl);
+                                    if (isAvatarSelected){
+                                        imageView.setDrawingCacheEnabled(true);
+                                        imageView.buildDrawingCache();
+                                        Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
+                                        Model.instance().uploadImage(user_id, bitmap, url->{
+                                            if (url != null){
+                                                user.setImgUrl(url);
+                                            }
+                                            Model.instance().addUser(user, (unused) -> {
+//                                                Navigation.findNavController(view1).popBackStack();
+                                            });
+                                        });
+                                    }else {
+                                        Model.instance().addUser(user, (unused) -> {
+//                                            return;
+                                        });
+                                    }
+
                                     Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                                     startActivity(intent);
 
@@ -82,4 +150,7 @@ public class Register extends AppCompatActivity {
             }
         });
     }
+
+
+
 }
