@@ -124,7 +124,7 @@
         </androidx.cardview.widget.CardView>
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profile_image"
+            android:id="@+id/recipe_card_row_user_img"
             android:layout_width="53dp"
             android:layout_height="43dp"
 

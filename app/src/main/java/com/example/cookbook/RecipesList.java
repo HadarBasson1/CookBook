@@ -5,7 +5,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
@@ -19,8 +18,6 @@ import android.view.ViewGroup;
 import com.example.cookbook.databinding.FragmentRecipeListBinding;
 import com.example.cookbook.model.Model;
 import com.example.cookbook.model.Recipe;
-
-import java.util.List;
 
 
 public class RecipesList extends Fragment {
@@ -61,7 +58,7 @@ public class RecipesList extends Fragment {
             adapter.setData(list);
         });
 
-        Model.instance().EventStudentsListLoadingState.observe(getViewLifecycleOwner(), status->{
+        Model.instance().EventRecipesListLoadingState.observe(getViewLifecycleOwner(), status->{
             binding.swipeRefresh.setRefreshing(status == Model.LoadingState.LOADING);
         });
 

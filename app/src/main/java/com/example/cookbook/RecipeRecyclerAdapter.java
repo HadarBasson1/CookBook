@@ -15,26 +15,30 @@ import com.example.cookbook.model.Recipe;
 import java.util.List;
 
 class RecipeViewHolder extends RecyclerView.ViewHolder{
-    TextView nameTv;
-    TextView idTv;
-    CheckBox cb;
+    TextView user_name;
+    TextView title;
+    ImageView avatar_recipe;
+    ImageView avatar_user;
     List<Recipe> data;
-    ImageView avatarImage;
+//    ImageView avatarImage;
     public RecipeViewHolder(@NonNull View itemView, RecipeRecyclerAdapter.OnItemClickListener listener, List<Recipe> data) {
         super(itemView);
         this.data = data;
-//        nameTv = itemView.findViewById(R.id.studentlistrow_name_tv);
-//       idTv = itemView.findViewById(R.id.studentlistrow_id_tv);
-//        avatarImage = itemView.findViewById(R.id.studentlistrow_avatar_img);
+
+        user_name = itemView.findViewById(R.id.recipe_card_row_user_name);
+        title = itemView.findViewById(R.id.recipe_card_row_title);
+        avatar_recipe = itemView.findViewById(R.id.recipe_card_row_img);
+        avatar_user = itemView.findViewById(R.id.recipe_card_row_user_img);
+
 //       cb = itemView.findViewById(R.id.studentlistrow_cb);
-       cb.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                int pos = (int)cb.getTag();
-//                Student st = data.get(pos);
-//                st.cb = cb.isChecked();
-            }
-       });
+//       cb.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+////                int pos = (int)cb.getTag();
+////                Student st = data.get(pos);
+////                st.cb = cb.isChecked();
+//            }
+//       });
         itemView.setOnClickListener(new View.OnClickListener() {
            @Override
             public void onClick(View view) {
@@ -45,8 +49,9 @@ class RecipeViewHolder extends RecyclerView.ViewHolder{
    }
 
     public void bind(Recipe recipe, int pos) {
-//        nameTv.setText(st.name);
-//        idTv.setText(st.id);
+
+        title.setText(recipe.title);
+        user_name.setText(recipe.editor);
 //       cb.setChecked(st.cb);
 //        cb.setTag(pos);
 //        if (st.getAvatarUrl()  != null && st.getAvatarUrl().length() > 5) {
@@ -82,10 +87,8 @@ public static interface OnItemClickListener{
     @NonNull
     @Override
     public RecipeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-//        View view = inflater.inflate(R.layout.student_list_row,parent,false);
-//        return new RecipeViewHolder(view,listener, data);
-
-         return null;
+        View view = inflater.inflate(R.layout.recipe_card_for_list,parent,false);
+        return new RecipeViewHolder(view,listener, data);
     }
 
     @Override

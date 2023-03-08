@@ -24,7 +24,7 @@ public class Recipe {
     public String duration="";
     public String editor="";
     public String imgUrl="";
-    public Long lastUpdated;
+    public Long lastUpdated=0L;
 
     public Recipe(){
     }
@@ -61,12 +61,16 @@ public class Recipe {
         try{
             Timestamp time = (Timestamp) json.get(LAST_UPDATED);
             rc.setLastUpdated((long) time.getSeconds());
+
         }catch(Exception e){
 
         }
         return rc;
     }
 
+
+
+    @NonNull
     public String getTitle() {
         return title;
     }

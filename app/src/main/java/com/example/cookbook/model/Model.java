@@ -36,11 +36,11 @@ public class Model {
         LOADING,
         NOT_LOADING
     }
-    final public MutableLiveData<LoadingState> EventStudentsListLoadingState = new MutableLiveData<LoadingState>(LoadingState.NOT_LOADING);
+    final public MutableLiveData<LoadingState> EventRecipesListLoadingState = new MutableLiveData<LoadingState>(LoadingState.NOT_LOADING);
 
 
     private LiveData<List<Recipe>> recipeList;
-    public LiveData<List<Recipe>> getAllStudents() {
+    public LiveData<List<Recipe>> getAllRecipes() {
         if(recipeList == null){
             recipeList = localDb.recipeDao().getAll();
             refreshAllRecipes();
@@ -49,9 +49,11 @@ public class Model {
     }
 
     public void refreshAllRecipes(){
-        EventStudentsListLoadingState.setValue(LoadingState.LOADING);
+        EventRecipesListLoadingState.setValue(LoadingState.LOADING);
         // get local last update
-        Long localLastUpdate = Recipe.getLocalLastUpdate();
+
+      Long localLastUpdate = Recipe.getLocalLastUpdate();
+
         // get all updated recorde from firebase since local last update
         firebaseModel.getAllRecipesSince(localLastUpdate,list->{
             executor.execute(()->{
@@ -65,13 +67,13 @@ public class Model {
                     }
                 }
                 try {
-                    Thread.sleep(3000);
+                    Thread.sleep(2000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
                 // update local last update
                 Recipe.setLocalLastUpdate(time);
-                EventStudentsListLoadingState.postValue(LoadingState.NOT_LOADING);
+                EventRecipesListLoadingState.postValue(LoadingState.NOT_LOADING);
             });
         });
     }

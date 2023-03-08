@@ -19,7 +19,7 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/imageView10"
+                android:id="@+id/recipe_card_row_img"
                 android:layout_width="403dp"
                 android:layout_height="133dp"
 
@@ -33,7 +33,7 @@
                 tools:srcCompat="@drawable/salmon" />
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/recipe_card_row_title"
                 android:layout_width="199dp"
                 android:layout_height="22dp"
                 android:fontFamily="@font/roboto_medium"
@@ -43,12 +43,12 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.157"
-                app:layout_constraintStart_toEndOf="@+id/profile_image"
-                app:layout_constraintTop_toBottomOf="@+id/imageView10"
+                app:layout_constraintStart_toEndOf="@+id/recipe_card_row_user_img"
+                app:layout_constraintTop_toBottomOf="@+id/recipe_card_row_img"
                 app:layout_constraintVertical_bias="0.422" />
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/profile_image"
+                android:id="@+id/recipe_card_row_user_img"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
 
@@ -58,11 +58,11 @@
                 app:civ_border_color="#FF000000"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView10"
+                app:layout_constraintTop_toBottomOf="@+id/recipe_card_row_img"
                 app:layout_constraintVertical_bias="0.511" />
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/recipe_card_row_user_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="1dp"
@@ -72,8 +72,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.07"
-                app:layout_constraintStart_toEndOf="@+id/profile_image"
-                app:layout_constraintTop_toBottomOf="@+id/textView"
+                app:layout_constraintStart_toEndOf="@+id/recipe_card_row_user_img"
+                app:layout_constraintTop_toBottomOf="@+id/recipe_card_row_title"
                 app:layout_constraintVertical_bias="0.0" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 

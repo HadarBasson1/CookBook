@@ -9,7 +9,7 @@ import com.example.cookbook.model.Recipe;
 import java.util.List;
 
 public class RecipesListViewModel extends ViewModel {
-    private LiveData<List<Recipe>> data = Model.instance().getAllStudents();
+    private LiveData<List<Recipe>> data = Model.instance().getAllRecipes();
 
     LiveData<List<Recipe>> getData(){
         return data;
