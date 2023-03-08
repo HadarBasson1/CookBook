@@ -1,5 +1,7 @@
 package com.example.cookbook.model;
 
+import static android.content.ContentValues.TAG;
+
 import android.graphics.Bitmap;
 import android.os.Handler;
 import android.os.Looper;
@@ -8,6 +10,10 @@ import android.util.Log;
 import androidx.core.os.HandlerCompat;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldPath;
+import com.google.firebase.firestore.Query;
 
 import java.util.List;
 import java.util.concurrent.Executor;
@@ -95,4 +101,11 @@ public class Model {
     public void uploadImage(String name, Bitmap bitmap, Listener<String> listener) {
         firebaseModel.uploadImage(name,bitmap,listener);
     }
+
+    public void getUserPropById(String id,Listener<String[]>listener) {
+      firebaseModel.getUserPropById(id,props->{
+          listener.onComplete(props);
+      });
+    }
+
 }

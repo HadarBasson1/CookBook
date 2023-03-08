@@ -5,7 +5,6 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.Navigation;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -21,13 +20,11 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.cookbook.model.Model;
-import com.example.cookbook.model.Recipe;
 import com.example.cookbook.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class Register extends AppCompatActivity {
         EditText editTextEmail,editTextPassword,editTextPhone,editTextAddress,editTextName;
@@ -85,12 +82,12 @@ public class Register extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 progressBar.setVisibility(View.VISIBLE);
-                String email, password,name,id,phon,address,imageurl;
+                String email, password,name,id, phone,address,imageurl;
 
                 email=String.valueOf(editTextEmail.getText());
                 password=String.valueOf(editTextPassword.getText());
                 name=String.valueOf(editTextName.getText());
-                phon=String.valueOf(editTextPhone.getText());
+                phone =String.valueOf(editTextPhone.getText());
                 address=String.valueOf(editTextAddress.getText());
                 imageurl=null;
                 if(TextUtils.isEmpty(email)){
@@ -115,7 +112,7 @@ public class Register extends AppCompatActivity {
                                             Toast.LENGTH_SHORT).show();
                                     //////save in cloud store
                                     String user_id=mAuth.getUid();
-                                    User user = new User(name,user_id,phon,address,imageurl);
+                                    User user = new User(name,user_id, phone,address,imageurl);
                                     if (isAvatarSelected){
                                         imageView.setDrawingCacheEnabled(true);
                                         imageView.buildDrawingCache();
