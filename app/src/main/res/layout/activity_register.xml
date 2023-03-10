@@ -182,4 +182,16 @@
         app:layout_constraintHorizontal_bias="0.524"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <ImageView
+        android:id="@+id/register_camera"
+        android:layout_width="67dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="164dp"
+        android:background="#6A040F"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_camera" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
