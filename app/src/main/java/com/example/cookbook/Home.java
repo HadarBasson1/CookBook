@@ -2,10 +2,12 @@ package com.example.cookbook;
 
 import static android.content.ContentValues.TAG;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
 import androidx.navigation.Navigation;
 
 import android.util.Log;
@@ -19,6 +21,7 @@ import android.widget.TextView;
 
 import com.example.cookbook.model.FirebaseModel;
 import com.example.cookbook.model.Model;
+import com.example.cookbook.model.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldPath;
@@ -32,6 +35,8 @@ import com.google.firebase.firestore.Query;
 public class Home extends Fragment {
 
     FirebaseAuth mAuth;
+    String [] props;
+    TextView UserName;
 
     public Home() {
         // Required empty public constructor
@@ -43,6 +48,12 @@ public class Home extends Fragment {
         super.onCreate(savedInstanceState);
         mAuth = FirebaseAuth.getInstance();
 
+//        Model.instance().getPropsById(mAuth.getUid(),props->{
+//            setProps(props);
+//            UserName.setText(props[0]);
+//        });
+
+
     }
 
 
@@ -51,11 +62,22 @@ public class Home extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
+
         View view= inflater.inflate(R.layout.fragment_home, container, false);
-        TextView UserName=view.findViewById(R.id.home_user_name);
-        Model.instance().getUserPropById(mAuth.getUid(),props->{
-            UserName.setText(props[0]);
+        UserName=view.findViewById(R.id.home_user_name);
+//        props = getActivity().getIntent().getStringArrayExtra("props");
+        String [] arg = getActivity().getIntent().getStringArrayExtra("props");
+        String userId=arg[0];
+       Model.instance().getPropsById(userId, props->{
+                   if (props != null) {
+
+           UserName.setText(props[0]);
+                   }
         });
+//        if (props != null) {
+//            UserName.setText(props[0]);
+//        }
         ImageView edit_btn = view.findViewById(R.id.home_edit_profile_btn);
         ImageView my_recipes = view.findViewById(R.id.home_my_recipes_btn);
 
@@ -91,4 +113,8 @@ public class Home extends Fragment {
 //        super.onCreateOptionsMenu(menu, inflater);
         menu.clear();
     }
+
+//    public void setProps(String[] props) {
+//        this.props = props;
+//    }
 }

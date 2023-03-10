@@ -18,7 +18,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class MainActivity extends AppCompatActivity {
+public class Login extends AppCompatActivity {
 
     EditText editTextEmail,editTextPassword;
     Button buttonReg,buttonLogin;
@@ -31,7 +31,9 @@ public class MainActivity extends AppCompatActivity {
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
+            String user_id=mAuth.getUid();
             Intent intent = new Intent(getApplicationContext(),MainActivityApp.class);
+            intent.putExtra("props",new String[] {user_id});
             startActivity(intent);
 //            finish();
             }
@@ -70,11 +72,11 @@ public class MainActivity extends AppCompatActivity {
 
 
                 if(TextUtils.isEmpty(email)){
-                    Toast.makeText(MainActivity.this,"Enter Email",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Login.this,"Enter Email",Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if(TextUtils.isEmpty(password)){
-                    Toast.makeText(MainActivity.this,"Enter Password",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Login.this,"Enter Password",Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -83,17 +85,20 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 progressBar.setVisibility(View.GONE);
+                                String user_id=mAuth.getUid();
                                 if (task.isSuccessful()) {
-                                    Toast.makeText(MainActivity.this, "Login Successful.",
+                                    Toast.makeText(Login.this, "Login Successful.",
                                             Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(getApplicationContext(),MainActivityApp.class);
+                                    intent.putExtra("props",new String[] {user_id});
                                     startActivity(intent);
                                     finish();
                                 } else {
-                                    Toast.makeText(MainActivity.this, "Authentication failed.",
+                                    Toast.makeText(Login.this, "Authentication failed.",
                                             Toast.LENGTH_SHORT).show();
                                 }
                             }
+
                         });
 
             }

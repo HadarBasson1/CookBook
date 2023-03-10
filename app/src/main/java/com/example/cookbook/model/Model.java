@@ -10,6 +10,7 @@ import android.util.Log;
 import androidx.core.os.HandlerCompat;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldPath;
@@ -43,7 +44,7 @@ public class Model {
         NOT_LOADING
     }
     final public MutableLiveData<LoadingState> EventRecipesListLoadingState = new MutableLiveData<LoadingState>(LoadingState.NOT_LOADING);
-
+    final public MutableLiveData<LoadingState> EventUsersListLoadingState = new MutableLiveData<LoadingState>(LoadingState.NOT_LOADING);
 
     private LiveData<List<Recipe>> recipeList;
     public LiveData<List<Recipe>> getAllRecipes() {
@@ -84,6 +85,59 @@ public class Model {
         });
     }
 
+
+    public void refreshAllUsers(){
+        EventUsersListLoadingState.setValue(LoadingState.LOADING);
+        // get local last update
+        Long localLastUpdate = User.getLocalLastUpdate();
+        // get all updated recorde from firebase since local last update
+        firebaseModel.getAllUsersSince(localLastUpdate,list->{
+            executor.execute(()->{
+                Log.d("TAG", " firebase return : " + list.size());
+                Long time = localLastUpdate;
+                for(User user:list){
+                    // insert new records into ROOM
+                    localDb.userDao().insertAll(user);
+                    if (time < user.getLastUpdated()){
+                        time = user.getLastUpdated();
+                    }
+                }
+                try {
+                    Thread.sleep(0);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                // update local last update
+                User.setLocalLastUpdate(time);
+                EventUsersListLoadingState.postValue(LoadingState.NOT_LOADING);
+            });
+        });
+    }
+
+    private LiveData<User> userLiveData;
+    public void getPropsById(String userId,Listener<String[]> listener){
+//        LiveData<User> userLiveData= localDb.userDao().getPropsById(userId);
+//        String [] props= new String[2];
+//        props[0]=userLiveData.getValue().name;
+//        props[1]=userLiveData.getValue().imgUrl;
+//        return props;
+        userLiveData = localDb.userDao().getPropsById(userId);
+        final String[] props = new String[2];
+        userLiveData.observeForever(new Observer<User>() {
+            @Override
+            public void onChanged(User user) {
+                if (user != null) {
+                    props[0] = user.name;
+                    props[1] = user.imgUrl;
+                    userLiveData.removeObserver(this);
+                    listener.onComplete(props);
+                }
+            }
+        });
+
+
+    }
+
     public void addRecipe(Recipe recipe, Listener<Void> listener){
         firebaseModel.addRecipe(recipe,(Void)->{
             refreshAllRecipes();
@@ -93,7 +147,7 @@ public class Model {
 
     public void addUser(User user, Listener<Void> listener){
         firebaseModel.addUser(user,(Void)->{
-//            refreshAllRecipes();
+            refreshAllUsers();
             listener.onComplete(null);
         });
     }
@@ -102,10 +156,10 @@ public class Model {
         firebaseModel.uploadImage(name,bitmap,listener);
     }
 
-    public void getUserPropById(String id,Listener<String[]>listener) {
-      firebaseModel.getUserPropById(id,props->{
-          listener.onComplete(props);
-      });
-    }
+//    public void getUserPropById(String id,Listener<String[]>listener) {
+//      firebaseModel.getUserPropById(id,props->{
+//          listener.onComplete(props);
+//      });
+//    }
 
 }

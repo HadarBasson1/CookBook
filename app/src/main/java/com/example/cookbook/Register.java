@@ -123,6 +123,10 @@ public class Register extends AppCompatActivity {
                                             }
                                             Model.instance().addUser(user, (unused) -> {
 //                                                Navigation.findNavController(view1).popBackStack();
+
+                                                Intent intent = new Intent(getApplicationContext(), MainActivityApp.class);
+                                                intent.putExtra("props",new String[] {name,imageurl});
+                                                startActivity(intent);
                                             });
                                         });
                                     }else {
@@ -130,8 +134,9 @@ public class Register extends AppCompatActivity {
 //                                            return;
                                         });
                                     }
-
-                                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+//
+                                    Intent intent = new Intent(getApplicationContext(), MainActivityApp.class);
+                                    intent.putExtra("props",new String[] {user_id});
                                     startActivity(intent);
 
 //                                    // Sign in success, update UI with the signed-in user's information

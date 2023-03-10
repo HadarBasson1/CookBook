@@ -63,6 +63,28 @@ public class FirebaseModel {
 
     }
 
+    public void getAllUsersSince(Long since, Model.Listener<List<User>> callback){
+
+        db.collection(User.COLLECTION)
+                .whereGreaterThanOrEqualTo(User.LAST_UPDATED, new Timestamp(since, 0))
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        List<User> list = new LinkedList<>();
+                        if (task.isSuccessful()) {
+                            QuerySnapshot jsonsList = task.getResult();
+                            for (DocumentSnapshot json : jsonsList) {
+                                User user = User.fromJson(json.getData());
+                                list.add(user);
+                            }
+                        }
+                        callback.onComplete(list);
+                    }
+                });
+
+    }
+
     public void addRecipe(Recipe recipe, Model.Listener<Void> listener) {
         db.collection(Recipe.COLLECTION).document(recipe.getTitle()).set(recipe.toJson())
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
