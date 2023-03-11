@@ -12,7 +12,7 @@ import java.util.List;
 @Dao
 public interface UserDao {
     @Query("select * from User")
-    LiveData<List<User>> getAll();
+    LiveData<List<User>> getAllUsers();
 
     @Query("select * from User where id = :idUser")
     LiveData<User> getPropsById(String idUser);

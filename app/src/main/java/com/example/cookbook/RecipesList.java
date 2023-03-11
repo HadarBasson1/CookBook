@@ -58,6 +58,10 @@ public class RecipesList extends Fragment {
             adapter.setData(list);
         });
 
+//        viewModel.getUsers().observe(getViewLifecycleOwner(),list->{
+//            adapter.setUsers(list);
+//        });
+
         Model.instance().EventRecipesListLoadingState.observe(getViewLifecycleOwner(), status->{
             binding.swipeRefresh.setRefreshing(status == Model.LoadingState.LOADING);
         });
@@ -84,6 +88,8 @@ public class RecipesList extends Fragment {
 
     void reloadData(){
         Model.instance().refreshAllRecipes();
+        Model.instance().refreshAllUsers();
+        //        refreshAllUsers();
     }
 
 }

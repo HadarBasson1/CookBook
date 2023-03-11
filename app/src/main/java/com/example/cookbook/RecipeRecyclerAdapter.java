@@ -3,7 +3,6 @@ package com.example.cookbook;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -11,6 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cookbook.model.Recipe;
+import com.example.cookbook.model.User;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -28,7 +29,7 @@ class RecipeViewHolder extends RecyclerView.ViewHolder{
         user_name = itemView.findViewById(R.id.recipe_card_row_user_name);
         title = itemView.findViewById(R.id.recipe_card_row_title);
         avatar_recipe = itemView.findViewById(R.id.recipe_card_row_img);
-        avatar_user = itemView.findViewById(R.id.recipe_card_row_user_img);
+        avatar_user = itemView.findViewById(R.id.home_user_img);
 
 //       cb = itemView.findViewById(R.id.studentlistrow_cb);
 //       cb.setOnClickListener(new View.OnClickListener() {
@@ -54,11 +55,11 @@ class RecipeViewHolder extends RecyclerView.ViewHolder{
         user_name.setText(recipe.editor);
 //       cb.setChecked(st.cb);
 //        cb.setTag(pos);
-//        if (st.getAvatarUrl()  != null && st.getAvatarUrl().length() > 5) {
-//            Picasso.get().load(st.getAvatarUrl()).placeholder(R.drawable.avatar).into(avatarImage);
-//        }else{
-//           avatarImage.setImageResource(R.drawable.avatar);
-//        }
+       if (recipe.getImgUrl()  != null && recipe.getImgUrl().length() > 5) {
+           Picasso.get().load(recipe.getImgUrl()).placeholder(R.drawable.salmon).into(avatar_recipe);
+      }else{
+           avatar_recipe.setImageResource(R.drawable.salmon);
+       }
     }
 
 }
@@ -72,10 +73,17 @@ public static interface OnItemClickListener{
 
     LayoutInflater inflater;
     List<Recipe> data;
+    List<User> users;
     public void setData(List<Recipe> data){
         this.data = data;
         notifyDataSetChanged();
     }
+
+    public void setUsers(List<User> users){
+        this.users = users;
+        notifyDataSetChanged();
+    }
+
     public RecipeRecyclerAdapter(LayoutInflater inflater, List<Recipe> data){
         this.inflater = inflater;
         this.data = data;

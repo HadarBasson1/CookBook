@@ -51,9 +51,19 @@ public class Model {
         if(recipeList == null){
             recipeList = localDb.recipeDao().getAll();
             refreshAllRecipes();
+            refreshAllUsers();
         }
         return recipeList;
     }
+
+//    private LiveData<List<User>> userList;
+//    public LiveData<List<User>> getAllUsers() {
+//        if(userList == null){
+//            userList = localDb.userDao().getAllUsers();
+//            refreshAllUsers();
+//        }
+//        return userList;
+//    }
 
     public void refreshAllRecipes(){
         EventRecipesListLoadingState.setValue(LoadingState.LOADING);
@@ -114,29 +124,45 @@ public class Model {
         });
     }
 
-    private LiveData<User> userLiveData;
-    public void getPropsById(String userId,Listener<String[]> listener){
+
+
+
+    public void getPropsById(String userId,Listener<User> listener){
+
+        LiveData<User> userLiveData=localDb.userDao().getPropsById(userId);
+//        listener.onComplete(userLiveData.getValue());
+        userLiveData.observeForever(new Observer<User>() {
+            @Override
+            public void onChanged(User user) {
+                if (user != null) {
+                    userLiveData.removeObserver(this);
+                    listener.onComplete(user);
+                }
+            }
+        });
 //        LiveData<User> userLiveData= localDb.userDao().getPropsById(userId);
 //        String [] props= new String[2];
 //        props[0]=userLiveData.getValue().name;
 //        props[1]=userLiveData.getValue().imgUrl;
 //        return props;
-        userLiveData = localDb.userDao().getPropsById(userId);
-        final String[] props = new String[2];
-        userLiveData.observeForever(new Observer<User>() {
-            @Override
-            public void onChanged(User user) {
-                if (user != null) {
-                    props[0] = user.name;
-                    props[1] = user.imgUrl;
-                    userLiveData.removeObserver(this);
-                    listener.onComplete(props);
-                }
-            }
-        });
+//        userLiveData = localDb.userDao().getPropsById(userId);
+//        final String[] props = new String[2];
+//        userLiveData.observeForever(new Observer<User>() {
+//            @Override
+//            public void onChanged(User user) {
+//                if (user != null) {
+//                    props[0] = user.name;
+//                    props[1] = user.imgUrl;
+//                    userLiveData.removeObserver(this);
+//                    listener.onComplete(props);
+//                }
+//            }
+//        });
 
 
     }
+
+
 
     public void addRecipe(Recipe recipe, Listener<Void> listener){
         firebaseModel.addRecipe(recipe,(Void)->{

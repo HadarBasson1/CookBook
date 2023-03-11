@@ -5,13 +5,16 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.cookbook.model.Model;
 import com.example.cookbook.model.Recipe;
+import com.example.cookbook.model.User;
 
 import java.util.List;
 
 public class RecipesListViewModel extends ViewModel {
     private LiveData<List<Recipe>> data = Model.instance().getAllRecipes();
 
+
     LiveData<List<Recipe>> getData(){
         return data;
     }
+
 }

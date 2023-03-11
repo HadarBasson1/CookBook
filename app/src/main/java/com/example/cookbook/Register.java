@@ -6,7 +6,9 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
@@ -28,7 +30,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class Register extends AppCompatActivity {
         EditText editTextEmail,editTextPassword,editTextPhone,editTextAddress,editTextName;
-        ImageView imageView;
+        ImageView imagegallery,imagecamera;
         Button buttonReg;
         FirebaseAuth mAuth;
         ProgressBar progressBar;
@@ -53,7 +55,8 @@ public class Register extends AppCompatActivity {
         editTextPhone=findViewById(R.id.register_phone);
         editTextAddress=findViewById(R.id.register_address);
         editTextName=findViewById(R.id.register_username);
-        imageView=findViewById(R.id.register_img);
+        imagegallery=findViewById(R.id.register_gallery);
+        imagecamera=findViewById(R.id.register_camera);
         buttonReg=findViewById(R.id.register_btn);
         progressBar = findViewById(R.id.register_progressbar);
 
@@ -61,7 +64,7 @@ public class Register extends AppCompatActivity {
             @Override
             public void onActivityResult(Bitmap result) {
                 if (result != null) {
-                    imageView.setImageBitmap(result);
+                    imagegallery.setImageBitmap(result);
                     isAvatarSelected = true;
                 }
             }
@@ -70,10 +73,19 @@ public class Register extends AppCompatActivity {
             @Override
             public void onActivityResult(Uri result) {
                 if (result != null){
-                    imageView.setImageURI(result);
+                    imagegallery.setImageURI(result);
                     isAvatarSelected = true;
                 }
             }
+        });
+
+
+        imagecamera.setOnClickListener(view1->{
+            cameraLauncher.launch(null);
+        });
+
+        imagegallery.setOnClickListener(view1->{
+            galleryLauncher.launch("image/*");
         });
 
 
@@ -114,9 +126,9 @@ public class Register extends AppCompatActivity {
                                     String user_id=mAuth.getUid();
                                     User user = new User(name,user_id, phone,address,imageurl);
                                     if (isAvatarSelected){
-                                        imageView.setDrawingCacheEnabled(true);
-                                        imageView.buildDrawingCache();
-                                        Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
+                                        imagegallery.setDrawingCacheEnabled(true);
+                                        imagegallery.buildDrawingCache();
+                                        Bitmap bitmap = ((BitmapDrawable) imagegallery.getDrawable()).getBitmap();
                                         Model.instance().uploadImage(user_id, bitmap, url->{
                                             if (url != null){
                                                 user.setImgUrl(url);
@@ -124,9 +136,9 @@ public class Register extends AppCompatActivity {
                                             Model.instance().addUser(user, (unused) -> {
 //                                                Navigation.findNavController(view1).popBackStack();
 
-                                                Intent intent = new Intent(getApplicationContext(), MainActivityApp.class);
-                                                intent.putExtra("props",new String[] {name,imageurl});
-                                                startActivity(intent);
+//                                                Intent intent = new Intent(getApplicationContext(), MainActivityApp.class);
+//                                                intent.putExtra("props",new String[] {name,imageurl});
+//                                                startActivity(intent);
                                             });
                                         });
                                     }else {
@@ -136,6 +148,10 @@ public class Register extends AppCompatActivity {
                                     }
 //
                                     Intent intent = new Intent(getApplicationContext(), MainActivityApp.class);
+                                    SharedPreferences sharedPref = MyApplication.getMyContext().getSharedPreferences("TAG", Context.MODE_PRIVATE);
+                                    SharedPreferences.Editor editor = sharedPref.edit();
+                                    editor.putString("ID_USER",user_id);
+                                    editor.commit();
                                     intent.putExtra("props",new String[] {user_id});
                                     startActivity(intent);
 

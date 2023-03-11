@@ -7,7 +7,7 @@
     tools:context=".Register">
 
     <ImageView
-        android:id="@+id/register_img"
+        android:id="@+id/register_gallery"
         android:layout_width="413dp"
         android:layout_height="211dp"
         app:layout_constraintStart_toStartOf="parent"

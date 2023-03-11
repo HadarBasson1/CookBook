@@ -1,5 +1,7 @@
 package com.example.cookbook;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
@@ -32,6 +34,7 @@ public class AddRecipe extends Fragment {
     FragmentAddRecipeBinding binding;
     ActivityResultLauncher<Void> cameraLauncher;
     ActivityResultLauncher<String> galleryLauncher;
+
 
     Boolean isAvatarSelected = false;
     @Override
@@ -82,7 +85,9 @@ public class AddRecipe extends Fragment {
             String category = binding.addRecipeCategory.getText().toString();
             String duration = binding.addRecipeTime.getText().toString();
             String level = binding.addRecipeLevel.getText().toString();
-            Recipe recipe = new Recipe(title,category,level,duration,"","");
+            SharedPreferences sharedPref = MyApplication.getMyContext().getSharedPreferences("TAG", Context.MODE_PRIVATE);
+            String id=sharedPref.getString("ID_USER", "user_id");
+            Recipe recipe = new Recipe(title,category,level,duration,id,"");
             if (isAvatarSelected){
                 binding.addRecipeImg.setDrawingCacheEnabled(true);
                 binding.addRecipeImg.buildDrawingCache();

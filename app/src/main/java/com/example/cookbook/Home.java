@@ -2,7 +2,9 @@ package com.example.cookbook;
 
 import static android.content.ContentValues.TAG;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -26,6 +28,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldPath;
 import com.google.firebase.firestore.Query;
+import com.squareup.picasso.Picasso;
 
 ///**
 // * A simple {@link Fragment} subclass.
@@ -34,9 +37,12 @@ import com.google.firebase.firestore.Query;
 
 public class Home extends Fragment {
 
-    FirebaseAuth mAuth;
-    String [] props;
+//    FirebaseAuth mAuth;
+//    String [] props;
     TextView UserName;
+    String id;
+    ImageView imageUser;
+            //recipe_card_row_user_img
 
     public Home() {
         // Required empty public constructor
@@ -46,7 +52,9 @@ public class Home extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mAuth = FirebaseAuth.getInstance();
+//        mAuth = FirebaseAuth.getInstance();
+        SharedPreferences sharedPref = MyApplication.getMyContext().getSharedPreferences("TAG", Context.MODE_PRIVATE);
+        id= sharedPref.getString("ID_USER", "user_name");
 
 //        Model.instance().getPropsById(mAuth.getUid(),props->{
 //            setProps(props);
@@ -66,15 +74,23 @@ public class Home extends Fragment {
 
         View view= inflater.inflate(R.layout.fragment_home, container, false);
         UserName=view.findViewById(R.id.home_user_name);
+        imageUser=view.findViewById(R.id.home_user_img);
 //        props = getActivity().getIntent().getStringArrayExtra("props");
-        String [] arg = getActivity().getIntent().getStringArrayExtra("props");
-        String userId=arg[0];
-       Model.instance().getPropsById(userId, props->{
-                   if (props != null) {
 
-           UserName.setText(props[0]);
+
+//        String [] arg = getActivity().getIntent().getStringArrayExtra("props");
+//        String userId=arg[0];
+        Model.instance().getPropsById(id, User->{
+            if (User != null) {
+           UserName.setText(User.name);
+           if (User.getImgUrl()  != null && User.getImgUrl().length() > 5) {
+               Picasso.get().load(User.getImgUrl()).placeholder(R.drawable.avatar).into(imageUser);
+           }else{
+               imageUser.setImageResource(R.drawable.avatar);
+           }
                    }
-        });
+        else UserName.setText("noam"); });
+//        });
 //        if (props != null) {
 //            UserName.setText(props[0]);
 //        }
@@ -98,8 +114,6 @@ public class Home extends Fragment {
                 Navigation.findNavController(v).navigate(R.id.action_home_fragment_to_recipesList);
             }
         });
-
-
 
         return view;
 
