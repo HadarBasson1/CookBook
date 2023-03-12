@@ -1,12 +1,22 @@
 package com.example.cookbook;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.cookbook.databinding.FragmentEditUserBinding;
+import com.example.cookbook.model.Model;
+import com.example.cookbook.model.User;
+import com.squareup.picasso.Picasso;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,7 +24,9 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class EditUser extends Fragment {
-
+    FragmentEditUserBinding binding;
+    EditUserViewModel viewModel;
+    User user;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -59,6 +71,52 @@ public class EditUser extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_edit_user, container, false);
+        binding = FragmentEditUserBinding.inflate(inflater, container, false);
+        View view = binding.getRoot();
+//        Model.instance().exist_user.observe(getViewLifecycleOwner(),exist_user->{
+//            user=exist_user;
+//    });
+
+        viewModel.getUser().observe(getViewLifecycleOwner(), exist_user -> {
+            user = exist_user;
+            if (user != null) {
+                binding.editPageName.setText(user.name);
+                binding.editPagePhone.setText(user.phone);
+                binding.editPageAddress.setText(user.address);
+                if (user.getImgUrl() != null && user.getImgUrl().length() > 5) {
+                    Picasso.get().load(user.getImgUrl()).placeholder(R.drawable.man).into(binding.editPageImg);
+                } else {
+                    binding.editPageImg.setImageResource(R.drawable.man);
+                }
+            }
+
+        });
+
+
+        binding.editPageSaveBtn.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                String name = binding.editPageName.getText().toString();
+                String phone = binding.editPagePhone.getText().toString();
+                String address = binding.editPageAddress.getText().toString();
+                Model.instance().updateUser(user.id, name, phone, address, new Model.Listener<Void>() {
+                    @Override
+                    public void onComplete(Void data) {
+
+                        Navigation.findNavController(v).navigate(R.id.action_global_home_fragment);
+                    }
+                });
+            }
+        });
+
+        return view;
     }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        viewModel = new ViewModelProvider(this).get(EditUserViewModel.class);
+    }
+
 }

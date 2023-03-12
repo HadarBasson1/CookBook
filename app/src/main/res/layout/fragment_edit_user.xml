@@ -12,7 +12,7 @@
         android:background="#FFFFFF">
 
         <ImageView
-            android:id="@+id/imageView5"
+            android:id="@+id/edit_page_img"
             android:layout_width="413dp"
             android:layout_height="211dp"
             android:scaleType="centerCrop"
@@ -33,11 +33,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.041"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView5"
+            app:layout_constraintTop_toBottomOf="@+id/edit_page_img"
             app:layout_constraintVertical_bias="0.134" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName"
+            android:id="@+id/edit_page_name"
             android:layout_width="290dp"
             android:layout_height="49dp"
             android:background="#DFDDDD"
@@ -50,7 +50,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.38"
             app:layout_constraintStart_toEndOf="@+id/imageView6"
-            app:layout_constraintTop_toBottomOf="@+id/imageView5"
+            app:layout_constraintTop_toBottomOf="@+id/edit_page_img"
             app:layout_constraintVertical_bias="0.118" />
 
         <ImageView
@@ -66,7 +66,7 @@
             app:layout_constraintVertical_bias="0.147" />
 
         <EditText
-            android:id="@+id/editTextPhone"
+            android:id="@+id/edit_page_phone"
             android:layout_width="290dp"
             android:layout_height="49dp"
             android:textColor="#1C1F22"
@@ -81,7 +81,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.38"
             app:layout_constraintStart_toEndOf="@+id/imageView7"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
+            app:layout_constraintTop_toBottomOf="@+id/edit_page_name"
             app:layout_constraintVertical_bias="0.111" />
 
         <ImageView
@@ -97,7 +97,7 @@
             app:layout_constraintVertical_bias="0.189" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName2"
+            android:id="@+id/edit_page_address"
             android:layout_width="290dp"
             android:layout_height="49dp"
             android:textColor="#1C1F22"
@@ -111,42 +111,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.38"
             app:layout_constraintStart_toEndOf="@+id/imageView8"
-            app:layout_constraintTop_toBottomOf="@+id/editTextPhone"
+            app:layout_constraintTop_toBottomOf="@+id/edit_page_phone"
             app:layout_constraintVertical_bias="0.143" />
 
-        <ImageView
-            android:id="@+id/imageView9"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/envelope"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.041"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView8"
-            app:layout_constraintVertical_bias="0.247" />
-
-        <EditText
-            android:id="@+id/editTextTextEmailAddress"
-            android:layout_width="290dp"
-            android:layout_height="49dp"
-            android:background="#DFDDDD"
-            android:textColor="#1C1F22"
-
-            android:backgroundTint="#DFDDDD"
-            android:ems="10"
-            android:hint="abc@gmail.com"
-
-            android:inputType="textEmailAddress"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.38"
-            app:layout_constraintStart_toEndOf="@+id/imageView9"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2"
-            app:layout_constraintVertical_bias="0.178" />
-
         <Button
-            android:id="@+id/button"
+            android:id="@+id/edit_page_save_btn"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:background="#DC2F02"
@@ -157,8 +126,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.320"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress"
-            app:layout_constraintVertical_bias="0.548" />
+            app:layout_constraintTop_toBottomOf="@+id/edit_page_address" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

@@ -10,6 +10,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import android.util.Log;
@@ -21,6 +22,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.cookbook.databinding.FragmentEditUserBinding;
+import com.example.cookbook.databinding.FragmentHomeBinding;
 import com.example.cookbook.model.FirebaseModel;
 import com.example.cookbook.model.Model;
 import com.example.cookbook.model.User;
@@ -36,7 +39,9 @@ import com.squareup.picasso.Picasso;
 // * create an instance of this fragment.
 
 public class Home extends Fragment {
-
+    FragmentHomeBinding binding;
+    HomeViewModel viewModel;
+    User user;
 //    FirebaseAuth mAuth;
 //    String [] props;
     TextView UserName;
@@ -53,6 +58,7 @@ public class Home extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        mAuth = FirebaseAuth.getInstance();
+//        User user=Model.instance().getExsitUser();
         SharedPreferences sharedPref = MyApplication.getMyContext().getSharedPreferences("TAG", Context.MODE_PRIVATE);
         id= sharedPref.getString("ID_USER", "user_name");
 
@@ -70,25 +76,42 @@ public class Home extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        binding = FragmentHomeBinding.inflate(inflater, container, false);
+        View view = binding.getRoot();
 
-        View view= inflater.inflate(R.layout.fragment_home, container, false);
-        UserName=view.findViewById(R.id.home_user_name);
-        imageUser=view.findViewById(R.id.home_user_img);
+        viewModel.getUser().observe(getViewLifecycleOwner(), exist_user -> {
+            user = exist_user;
+            if (user != null) {
+                binding.homeUserName.setText(user.name);
+                if (user.getImgUrl()  != null && user.getImgUrl().length() > 5) {
+                    Picasso.get().load(user.getImgUrl()).placeholder(R.drawable.avatar).into(binding.homeUserImg);
+                }else{
+                    imageUser.setImageResource(R.drawable.avatar);
+                }
+            }
+
+        });
+
+
+
+//        UserName=view.findViewById(R.id.home_user_name);
+//        imageUser=view.findViewById(R.id.home_user_img);
 //        props = getActivity().getIntent().getStringArrayExtra("props");
 
 
 //        String [] arg = getActivity().getIntent().getStringArrayExtra("props");
 //        String userId=arg[0];
-        Model.instance().getPropsById(id, User->{
-            if (User != null) {
-           UserName.setText(User.name);
-           if (User.getImgUrl()  != null && User.getImgUrl().length() > 5) {
-               Picasso.get().load(User.getImgUrl()).placeholder(R.drawable.avatar).into(imageUser);
-           }else{
-               imageUser.setImageResource(R.drawable.avatar);
-           }
-                   }
-        else UserName.setText("noam"); });
+
+//        Model.instance().getPropsById(id, User->{
+//            if (User != null) {
+//           UserName.setText(User.name);
+//           if (User.getImgUrl()  != null && User.getImgUrl().length() > 5) {
+//               Picasso.get().load(User.getImgUrl()).placeholder(R.drawable.avatar).into(imageUser);
+//           }else{
+//               imageUser.setImageResource(R.drawable.avatar);
+//           }
+//                   }
+//        else UserName.setText("noam"); });
 //        });
 //        if (props != null) {
 //            UserName.setText(props[0]);
@@ -124,6 +147,12 @@ public class Home extends Fragment {
 
         return view;
 
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        viewModel = new ViewModelProvider(this).get(HomeViewModel.class);
     }
 
 

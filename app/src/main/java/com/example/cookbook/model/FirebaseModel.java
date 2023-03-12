@@ -85,6 +85,25 @@ public class FirebaseModel {
 
     }
 
+//    public User getExistUser(String id, Model.Listener<User> listener){
+//
+//        db.collection(User.COLLECTION).document(id)
+//                .get()
+//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                        if (task.isSuccessful()) {
+//                            QuerySnapshot jsonsList = task.getResult();
+//                            for (DocumentSnapshot json : jsonsList) {
+//                                User user = User.fromJson(json.getData());
+//                            }
+//                        }
+//                        listener.onComplete(use);
+//                    }
+//                });
+//
+//    }
+
     public void addRecipe(Recipe recipe, Model.Listener<Void> listener) {
         db.collection(Recipe.COLLECTION).document(recipe.getTitle()).set(recipe.toJson())
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -104,6 +123,27 @@ public class FirebaseModel {
                     }
                 });
     }
+
+    public void updateUser(String id,String name,String phone,String address, Model.Listener<Void> listener){
+
+        DocumentReference user_update = db.collection(User.COLLECTION).document(id);
+        user_update
+                .update("name",name,"address", address,"phone",phone)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        listener.onComplete(null);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        listener.onComplete(null);
+                    }
+                });
+    }
+
+
 
     void uploadImage(String name, Bitmap bitmap, Model.Listener<String> listener){
         StorageReference storageRef = storage.getReference();

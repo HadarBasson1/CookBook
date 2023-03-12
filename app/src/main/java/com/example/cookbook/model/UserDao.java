@@ -17,6 +17,9 @@ public interface UserDao {
     @Query("select * from User where id = :idUser")
     LiveData<User> getPropsById(String idUser);
 
+    @Query("select * from User where id = :idUser")
+    User getPropsById_new(String idUser);
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(User... users);
 

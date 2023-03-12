@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.cookbook.model.Model;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -35,7 +36,7 @@ public class Login extends AppCompatActivity {
         if(currentUser != null){
             String user_id=mAuth.getUid();
             Intent intent = new Intent(getApplicationContext(),MainActivityApp.class);
-            intent.putExtra("props",new String[] {user_id});
+//            intent.putExtra("props",new String[] {user_id});
             startActivity(intent);
 //            finish();
             }

@@ -2,6 +2,8 @@ package com.example.cookbook.model;
 
 import static android.content.ContentValues.TAG;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Handler;
 import android.os.Looper;
@@ -12,6 +14,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 
+import com.example.cookbook.MyApplication;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldPath;
 import com.google.firebase.firestore.Query;
@@ -56,6 +59,16 @@ public class Model {
         return recipeList;
     }
 
+    public LiveData<User> exist_user;
+    public LiveData<User> getExsitUser() {
+        if(exist_user == null){
+            SharedPreferences sharedPref = MyApplication.getMyContext().getSharedPreferences("TAG", Context.MODE_PRIVATE);
+            String id= sharedPref.getString("ID_USER", "user_name");
+            exist_user = localDb.userDao().getPropsById(id);
+        }
+        return exist_user;
+    }
+
 //    private LiveData<List<User>> userList;
 //    public LiveData<List<User>> getAllUsers() {
 //        if(userList == null){
@@ -84,7 +97,7 @@ public class Model {
                     }
                 }
                 try {
-                    Thread.sleep(2000);
+                    Thread.sleep(0);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -94,6 +107,7 @@ public class Model {
             });
         });
     }
+
 
 
     public void refreshAllUsers(){
@@ -177,6 +191,18 @@ public class Model {
             listener.onComplete(null);
         });
     }
+
+    public void updateUser(String id,String name,String phone,String address, Listener<Void> listener) {
+        firebaseModel.updateUser(id, name, phone, address, new Listener<Void>() {
+            @Override
+            public void onComplete(Void data) {
+                refreshAllUsers();
+                listener.onComplete(null);
+            }
+        });
+    }
+
+
 
     public void uploadImage(String name, Bitmap bitmap, Listener<String> listener) {
         firebaseModel.uploadImage(name,bitmap,listener);
