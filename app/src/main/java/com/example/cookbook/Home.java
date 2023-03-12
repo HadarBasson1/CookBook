@@ -95,6 +95,7 @@ public class Home extends Fragment {
 //        }
         ImageView edit_btn = view.findViewById(R.id.home_edit_profile_btn);
         ImageView my_recipes = view.findViewById(R.id.home_my_recipes_btn);
+        ImageView all_recipes = view.findViewById(R.id.home_all_recipes_btn);
 
 
 
@@ -108,6 +109,13 @@ public class Home extends Fragment {
 
 
         my_recipes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Navigation.findNavController(v).navigate(R.id.action_home_fragment_to_recipesList);
+            }
+        });
+
+        all_recipes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Navigation.findNavController(v).navigate(R.id.action_home_fragment_to_recipesList);

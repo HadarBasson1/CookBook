@@ -154,6 +154,7 @@ public class Register extends AppCompatActivity {
                                     editor.commit();
 //                                    intent.putExtra("props",new String[] {user_id});
                                     startActivity(intent);
+                                    finish();
 
 //                                    // Sign in success, update UI with the signed-in user's information
 //                                    FirebaseUser user = mAuth.getCurrentUser();
