@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.cookbook.model.Model;
 import com.example.cookbook.model.Recipe;
 import com.example.cookbook.model.User;
 import com.squareup.picasso.Picasso;
@@ -50,16 +51,30 @@ class RecipeViewHolder extends RecyclerView.ViewHolder{
    }
 
     public void bind(Recipe recipe, int pos) {
-
         title.setText(recipe.title);
-        user_name.setText(recipe.editor);
+        Model.instance().getPropsById(recipe.editor,User->{
+            user_name.setText(User.name);
+            if (User.getImgUrl()  != null && User.getImgUrl().length() > 5) {
+                Picasso.get().load(User.getImgUrl()).placeholder(R.drawable.avatar).into(avatar_user);
+            }else{
+                avatar_user.setImageResource(R.drawable.avatar);
+            }
+            if (recipe.getImgUrl()  != null && recipe.getImgUrl().length() > 5) {
+                Picasso.get().load(recipe.getImgUrl()).placeholder(R.drawable.salmon).into(avatar_recipe);
+            }else{
+                avatar_recipe.setImageResource(R.drawable.salmon);
+            }
+
+        });
+
+//        user_name.setText(recipe.editor);
 //       cb.setChecked(st.cb);
 //        cb.setTag(pos);
-       if (recipe.getImgUrl()  != null && recipe.getImgUrl().length() > 5) {
-           Picasso.get().load(recipe.getImgUrl()).placeholder(R.drawable.salmon).into(avatar_recipe);
-      }else{
-           avatar_recipe.setImageResource(R.drawable.salmon);
-       }
+//       if (recipe.getImgUrl()  != null && recipe.getImgUrl().length() > 5) {
+//           Picasso.get().load(recipe.getImgUrl()).placeholder(R.drawable.salmon).into(avatar_recipe);
+//      }else{
+//           avatar_recipe.setImageResource(R.drawable.salmon);
+//       }
     }
 
 }

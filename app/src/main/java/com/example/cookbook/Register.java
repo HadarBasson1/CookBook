@@ -152,7 +152,7 @@ public class Register extends AppCompatActivity {
                                     SharedPreferences.Editor editor = sharedPref.edit();
                                     editor.putString("ID_USER",user_id);
                                     editor.commit();
-                                    intent.putExtra("props",new String[] {user_id});
+//                                    intent.putExtra("props",new String[] {user_id});
                                     startActivity(intent);
 
 //                                    // Sign in success, update UI with the signed-in user's information

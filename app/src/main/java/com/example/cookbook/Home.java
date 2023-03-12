@@ -57,9 +57,9 @@ public class Home extends Fragment {
         id= sharedPref.getString("ID_USER", "user_name");
 
 //        Model.instance().getPropsById(mAuth.getUid(),props->{
-//            setProps(props);
-//            UserName.setText(props[0]);
-//        });
+////            setProps(props);
+////            UserName.setText(props[0]);
+////        });
 
 
     }
@@ -70,7 +70,6 @@ public class Home extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
 
         View view= inflater.inflate(R.layout.fragment_home, container, false);
         UserName=view.findViewById(R.id.home_user_name);
