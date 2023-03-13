@@ -23,6 +23,9 @@
         <argument
             android:name="ImageUrl"
             app:argType="string" />
+        <action
+            android:id="@+id/action_homeFragment_to_nutritionPage"
+            app:destination="@id/nutritionPage" />
     </fragment>
     <fragment
         android:id="@+id/edit_user_fragment"
@@ -75,4 +78,9 @@
         android:name="com.example.cookbook.Register"
         android:label="activity_register"
         tools:layout="@layout/activity_register" />
+    <fragment
+        android:id="@+id/nutritionPage"
+        android:name="com.example.cookbook.NutritionPage"
+        android:label="Nutrition Page"
+        tools:layout="@layout/fragment_nutrition_api" />
 </navigation>

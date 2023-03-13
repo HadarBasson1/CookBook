@@ -13,116 +13,116 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <SearchView
-            android:id="@+id/searchView"
+        <EditText
+            android:id="@+id/nutrition_search_TV"
             android:layout_width="345dp"
-            android:layout_height="38dp"
+            android:layout_height="48dp"
             android:background="#831919"
+            android:hint="Search Food Info"
             android:queryHint="search information about food"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.144" />
+            app:layout_constraintVertical_bias="0.122" />
 
         <TextView
-            android:id="@+id/textView11"
+            android:id="@+id/nutrition_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="52dp"
+            android:layout_marginTop="76dp"
             android:fontFamily="@font/roboto_medium"
             android:text="Food Name"
             android:textColor="#000000"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/searchView" />
+            app:layout_constraintTop_toBottomOf="@+id/nutrition_search_TV" />
 
         <TextView
-            android:id="@+id/textView22"
+            android:id="@+id/nutrition_suger"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_medium"
             android:text="Suger : 2 gr"
-            android:fontFamily="@font/roboto_medium"
             android:textColor="#000000"
 
 
-            app:layout_constraintBottom_toTopOf="@+id/textView21"
+            app:layout_constraintBottom_toTopOf="@+id/nutrition_fiber"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.093"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView23" />
+            app:layout_constraintTop_toBottomOf="@+id/nutrition_carbs" />
 
         <TextView
-            android:id="@+id/textView26"
+            android:id="@+id/nutrition_energy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_medium"
             android:text="Energey : 200 kcl"
-            android:fontFamily="@font/roboto_medium"
             android:textColor="#000000"
 
 
-            app:layout_constraintBottom_toTopOf="@+id/textView25"
+            app:layout_constraintBottom_toTopOf="@+id/nutrition_protein"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.093"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView11" />
+            app:layout_constraintTop_toBottomOf="@+id/nutrition_name" />
 
         <TextView
-            android:id="@+id/textView25"
+            android:id="@+id/nutrition_protein"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_medium"
             android:text="Protein : 25 gr"
-            android:fontFamily="@font/roboto_medium"
             android:textColor="#000000"
 
 
-            app:layout_constraintBottom_toTopOf="@+id/textView23"
+            app:layout_constraintBottom_toTopOf="@+id/nutrition_carbs"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.093"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView26" />
+            app:layout_constraintTop_toBottomOf="@+id/nutrition_energy" />
 
         <TextView
-            android:id="@+id/textView23"
+            android:id="@+id/nutrition_carbs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_medium"
             android:text="Carbs : 28 gr"
+
             android:textColor="#000000"
 
-            android:fontFamily="@font/roboto_medium"
-
-            app:layout_constraintBottom_toTopOf="@+id/textView22"
+            app:layout_constraintBottom_toTopOf="@+id/nutrition_suger"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.093"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView25" />
+            app:layout_constraintTop_toBottomOf="@+id/nutrition_protein" />
 
         <TextView
-            android:id="@+id/textView20"
+            android:id="@+id/nutrition_fat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_medium"
             android:text="Fat : 10 gr"
+
             android:textColor="#000000"
 
-            android:fontFamily="@font/roboto_medium"
-
-            app:layout_constraintBottom_toTopOf="@+id/textView24"
+            app:layout_constraintBottom_toTopOf="@+id/nutrition_colesterol"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.093"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView21" />
+            app:layout_constraintTop_toBottomOf="@+id/nutrition_fiber" />
 
         <TextView
-            android:id="@+id/textView24"
+            android:id="@+id/nutrition_colesterol"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="92dp"
-            android:text="colesterol : 2mg"
-            android:textColor="#000000"
-
             android:fontFamily="@font/roboto_medium"
+            android:text="colesterol : 2mg"
+
+            android:textColor="#000000"
 
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -130,19 +130,19 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
-            android:id="@+id/textView21"
+            android:id="@+id/nutrition_fiber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_medium"
             android:text="Fiber : 2.6 gr"
+
             android:textColor="#000000"
 
-            android:fontFamily="@font/roboto_medium"
-
-            app:layout_constraintBottom_toTopOf="@+id/textView20"
+            app:layout_constraintBottom_toTopOf="@+id/nutrition_fat"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.093"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView22" />
+            app:layout_constraintTop_toBottomOf="@+id/nutrition_suger" />
 
         <TextView
             android:id="@+id/textView27"
@@ -156,12 +156,25 @@
             android:textColor="#F9A207"
             android:textSize="34sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/searchView"
+            app:layout_constraintBottom_toTopOf="@+id/nutrition_search_TV"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.565" />
+
+        <Button
+            android:id="@+id/nutrition_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:background="#F9A207"
+            android:text="Search"
+            android:textColor="#821919"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nutrition_search_TV" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

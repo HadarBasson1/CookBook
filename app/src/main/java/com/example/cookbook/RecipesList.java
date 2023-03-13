@@ -84,10 +84,10 @@ public class RecipesList extends Fragment {
 //            });
 //        });
 
-        LiveData<NutrientInfo> data = NutritionModel.instance.searchInfoByTitle("100 gram banana");
-        data.observe(getViewLifecycleOwner(),info->{
-                Log.d("TAG","*****************************************************" + info.getEnergy().getQuantity()+" "+info.getEnergy().getUnit() +"**********************************************************");
-        });
+//        LiveData<NutrientInfo> data = NutritionModel.instance.searchInfoByTitle("100 gram banana");
+//        data.observe(getViewLifecycleOwner(),info->{
+//                Log.d("TAG","*****************************************************" + info.getEnergy().getQuantity()+" "+info.getEnergy().getUnit() +"**********************************************************");
+//        });
 
         return view;
 
