@@ -43,8 +43,9 @@ public class RecipesList extends Fragment {
             public void onItemClick(int pos) {
                 Log.d("TAG", "Row was clicked " + pos);
                 Recipe recipe = viewModel.getData().getValue().get(pos);
-                RecipesListDirections.ActionRecipesListToRecipePage action = RecipesListDirections.actionRecipesListToRecipePage(recipe.title);
-                Navigation.findNavController(view).navigate((NavDirections) action);
+                    RecipesListDirections.ActionRecipesListToRecipePage action = RecipesListDirections.actionRecipesListToRecipePage(recipe.title,recipe.imgUrl, recipe.difficulty, recipe.category, recipe.duration,recipe.editor);
+                    Navigation.findNavController(view).navigate(action);
+
             }
         });
 

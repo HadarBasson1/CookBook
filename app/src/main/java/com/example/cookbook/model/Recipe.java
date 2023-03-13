@@ -145,6 +145,7 @@ public class Recipe {
         json.put(TITLE, getTitle());
         json.put(CATEGORY, getCategory());
         json.put(DIFFICULTY, getDifficulty());
+        json.put(DURATION, getDuration());
         json.put(EDITOR, getEditor());
         json.put(AVATAR, getImgUrl());
         json.put(LAST_UPDATED, FieldValue.serverTimestamp());
