@@ -10,10 +10,10 @@ import android.view.ViewGroup;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link NutritionApi#newInstance} factory method to
+ * Use the {@link NutritionPage#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class NutritionApi extends Fragment {
+public class NutritionPage extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,7 +24,7 @@ public class NutritionApi extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public NutritionApi() {
+    public NutritionPage() {
         // Required empty public constructor
     }
 
@@ -37,8 +37,8 @@ public class NutritionApi extends Fragment {
      * @return A new instance of fragment NutritionApi.
      */
     // TODO: Rename and change types and number of parameters
-    public static NutritionApi newInstance(String param1, String param2) {
-        NutritionApi fragment = new NutritionApi();
+    public static NutritionPage newInstance(String param1, String param2) {
+        NutritionPage fragment = new NutritionPage();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -61,4 +61,5 @@ public class NutritionApi extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_nutrition_api, container, false);
     }
+
 }

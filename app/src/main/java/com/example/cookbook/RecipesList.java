@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
@@ -17,7 +18,12 @@ import android.view.ViewGroup;
 
 import com.example.cookbook.databinding.FragmentRecipeListBinding;
 import com.example.cookbook.model.Model;
+import com.example.cookbook.model.NutrientInfo;
+import com.example.cookbook.model.NutritionModel;
+import com.example.cookbook.model.NutritionResponse;
 import com.example.cookbook.model.Recipe;
+
+import java.util.List;
 
 
 public class RecipesList extends Fragment {
@@ -77,7 +83,14 @@ public class RecipesList extends Fragment {
 //            });
 //        });
 
+        LiveData<NutrientInfo> data = NutritionModel.instance.searchInfoByTitle("100 gram banana");
+        data.observe(getViewLifecycleOwner(),info->{
+                Log.d("TAG","*****************************************************" + info.getEnergy().getQuantity()+" "+info.getEnergy().getUnit() +"**********************************************************");
+        });
+
         return view;
+
+        //https://api.edamam.com/api/nutrition-data?app_id=73c41008&app_key=05e00d422cee8579657eb67ec11d4d06%09&nutrition-type=cooking&ingr=100%20gram%20pasta
     }
 
     @Override
