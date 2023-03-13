@@ -43,10 +43,25 @@
     <fragment
         android:id="@+id/recipePage"
         android:name="com.example.cookbook.RecipePage"
-        android:label="fragment_recipe_page"
-        tools:layout="@layout/fragment_recipe_page" >
+        android:label="Recipe's Deatail"
+        tools:layout="@layout/fragment_recipe_page">
         <argument
             android:name="title"
+            app:argType="string" />
+        <argument
+            android:name="imgUrl"
+            app:argType="string" />
+        <argument
+            android:name="level"
+            app:argType="string" />
+        <argument
+            android:name="category"
+            app:argType="string" />
+        <argument
+            android:name="duration"
+            app:argType="string" />
+        <argument
+            android:name="Instructions"
             app:argType="string" />
     </fragment>
     <fragment
