@@ -17,6 +17,9 @@ public interface RecipeDao {
     @Query("select * from Recipe where editor = :nameEditor")
     Recipe getRecipeByEditor(String nameEditor);
 
+    @Query("select * from Recipe where editor = :nameEditor")
+    LiveData<List<Recipe>> getRecipeById(String nameEditor);
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(Recipe... recipes);
 

@@ -58,7 +58,7 @@ public class Home extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        mAuth = FirebaseAuth.getInstance();
-//        User user=Model.instance().getExsitUser();
+        user=Model.instance().getExsitUser().getValue();
         SharedPreferences sharedPref = MyApplication.getMyContext().getSharedPreferences("TAG", Context.MODE_PRIVATE);
         id= sharedPref.getString("ID_USER", "user_name");
 
@@ -135,7 +135,7 @@ public class Home extends Fragment {
         my_recipes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Navigation.findNavController(v).navigate(R.id.action_home_fragment_to_recipesList);
+                Navigation.findNavController(v).navigate(R.id.action_homeFragment_to_myRecipeList);
             }
         });
 

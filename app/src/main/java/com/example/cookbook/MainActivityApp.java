@@ -16,6 +16,7 @@ import android.view.View;
 
 import com.example.cookbook.databinding.FragmentHomeBinding;
 import com.example.cookbook.databinding.FragmentRecipeListBinding;
+import com.example.cookbook.model.Model;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivityApp extends AppCompatActivity {
@@ -62,7 +63,7 @@ public class MainActivityApp extends AppCompatActivity {
             navController.popBackStack();
         }
         else if(item.getItemId() == R.id.logout_menu){
-
+            Model.instance().logOut();
             FirebaseAuth.getInstance().signOut();
             Intent intent = new Intent(getApplicationContext(), Login.class);
             startActivity(intent);

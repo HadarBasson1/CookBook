@@ -26,6 +26,9 @@
         <action
             android:id="@+id/action_homeFragment_to_nutritionPage"
             app:destination="@id/nutritionPage" />
+        <action
+            android:id="@+id/action_homeFragment_to_myRecipeList"
+            app:destination="@id/myRecipeList" />
     </fragment>
     <fragment
         android:id="@+id/edit_user_fragment"
@@ -36,7 +39,7 @@
     <fragment
         android:id="@+id/recipesList"
         android:name="com.example.cookbook.RecipesList"
-        android:label="My Recipes "
+        android:label="All  Recipes "
         tools:layout="@layout/fragment_recipe_list">
         <action
             android:id="@+id/action_recipesList_to_recipePage"
@@ -83,4 +86,13 @@
         android:name="com.example.cookbook.NutritionPage"
         android:label="Nutrition Page"
         tools:layout="@layout/fragment_nutrition_api" />
+    <fragment
+        android:id="@+id/myRecipeList"
+        android:name="com.example.cookbook.MyRecipeList"
+        android:label="My Recipe List"
+        tools:layout="@layout/fragment_my_recipe_list" >
+        <action
+            android:id="@+id/action_myRecipeList_to_recipePage"
+            app:destination="@id/recipePage" />
+    </fragment>
 </navigation>

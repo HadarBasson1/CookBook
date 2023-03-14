@@ -37,6 +37,8 @@ public class Model {
     private Model(){
     }
 
+
+
     public interface Listener<T>{
         void onComplete(T data);
     }
@@ -59,6 +61,15 @@ public class Model {
         return recipeList;
     }
 
+    private LiveData<List<Recipe>> filterList;
+    public LiveData<List<Recipe>> getFilterRecipes(String id) {
+        filterList=getAllRecipes();
+        filterList = localDb.recipeDao().getRecipeById(id);
+        return  filterList;
+    }
+
+
+
     public LiveData<User> exist_user;
     public LiveData<User> getExsitUser() {
         if(exist_user == null){
@@ -67,6 +78,11 @@ public class Model {
             exist_user = localDb.userDao().getPropsById(id);
         }
         return exist_user;
+    }
+
+
+    public void logOut() {
+        exist_user=null;
     }
 
 //    private LiveData<List<User>> userList;
@@ -78,11 +94,43 @@ public class Model {
 //        return userList;
 //    }
 
-    public void refreshAllRecipes(){
+    public void refreshFilterRecipes(String id){
         EventRecipesListLoadingState.setValue(LoadingState.LOADING);
         // get local last update
 
       Long localLastUpdate = Recipe.getLocalLastUpdate();
+
+        // get all updated recorde from firebase since local last update
+        firebaseModel.getAllRecipesSince(localLastUpdate,list->{
+            executor.execute(()->{
+                Log.d("TAG", " firebase return : " + list.size());
+                Long time = localLastUpdate;
+                for(Recipe recipe:list){
+                    // insert new records into ROOM
+                    if(recipe.getEditor()==id){
+                        localDb.recipeDao().insertAll(recipe);
+                        if (time < recipe.getLastUpdated()){
+                            time = recipe.getLastUpdated();
+                        }
+                    }
+                }
+                try {
+                    Thread.sleep(0);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                // update local last update
+                Recipe.setLocalLastUpdate(time);
+                EventRecipesListLoadingState.postValue(LoadingState.NOT_LOADING);
+            });
+        });
+    }
+
+    public void refreshAllRecipes(){
+        EventRecipesListLoadingState.setValue(LoadingState.LOADING);
+        // get local last update
+
+        Long localLastUpdate = Recipe.getLocalLastUpdate();
 
         // get all updated recorde from firebase since local last update
         firebaseModel.getAllRecipesSince(localLastUpdate,list->{
