@@ -42,16 +42,17 @@ public class RecipesList extends Fragment {
         binding.recyclerView.setHasFixedSize(true);
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new RecipeRecyclerAdapter(getLayoutInflater(),viewModel.getData().getValue());
+        adapter.setIfEditable(false);
         binding.recyclerView.setAdapter(adapter);
+
 
         adapter.setOnItemClickListener(new  RecipeRecyclerAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int pos) {
                 Log.d("TAG", "Row was clicked " + pos);
                 Recipe recipe = viewModel.getData().getValue().get(pos);
-                    RecipesListDirections.ActionRecipesListToRecipePage action = RecipesListDirections.actionRecipesListToRecipePage(recipe.title,recipe.imgUrl, recipe.difficulty, recipe.category, recipe.duration,recipe.editor);
+                    RecipesListDirections.ActionRecipesListToRecipePage action = RecipesListDirections.actionRecipesListToRecipePage(recipe.title,recipe.imgUrl, recipe.difficulty, recipe.category, recipe.duration,recipe.editor,false);
                     Navigation.findNavController(view).navigate(action);
-
             }
         });
 

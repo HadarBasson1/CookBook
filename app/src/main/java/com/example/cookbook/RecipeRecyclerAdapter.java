@@ -1,5 +1,6 @@
 package com.example.cookbook;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +27,6 @@ class RecipeViewHolder extends RecyclerView.ViewHolder{
     public RecipeViewHolder(@NonNull View itemView, RecipeRecyclerAdapter.OnItemClickListener listener, List<Recipe> data) {
         super(itemView);
         this.data = data;
-
         user_name = itemView.findViewById(R.id.recipe_card_row_user_name);
         title = itemView.findViewById(R.id.recipe_card_row_title);
         avatar_recipe = itemView.findViewById(R.id.recipe_card_row_img);
@@ -81,8 +81,13 @@ class RecipeViewHolder extends RecyclerView.ViewHolder{
 
 public class RecipeRecyclerAdapter extends RecyclerView.Adapter<RecipeViewHolder>{
     OnItemClickListener listener;
+    public boolean ifEditable=false;
 
-public static interface OnItemClickListener{
+    public void setIfEditable(boolean ifEditable) {
+        this.ifEditable = ifEditable;
+    }
+
+    public static interface OnItemClickListener{
     void onItemClick(int pos);
 }
 
@@ -110,7 +115,17 @@ public static interface OnItemClickListener{
     @NonNull
     @Override
     public RecipeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.recipe_card_for_list,parent,false);
+        View view;
+        if(ifEditable==true){
+            Log.d("TAG","!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            view = inflater.inflate(R.layout.recipe_card_for_mylist,parent,false);
+        }
+        else {
+            view = inflater.inflate(R.layout.recipe_card_for_list,parent,false);
+            Log.d("TAG","111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111");
+
+        }
+
         return new RecipeViewHolder(view,listener, data);
     }
 

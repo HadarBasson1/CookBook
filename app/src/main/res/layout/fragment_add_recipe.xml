@@ -11,7 +11,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="790dp">
 
         <EditText
             android:id="@+id/add_recipe_recipename"
@@ -32,8 +32,8 @@
 
         <ImageView
             android:id="@+id/add_recipe_img"
-            android:layout_width="412dp"
-            android:layout_height="165dp"
+            android:layout_width="404dp"
+            android:layout_height="160dp"
             android:layout_marginTop="16dp"
             android:src="@android:drawable/ic_menu_gallery"
             app:layout_constraintEnd_toEndOf="parent"
@@ -49,10 +49,10 @@
             android:background="#DFDDDD"
             android:backgroundTint="#FCA14B"
             android:ems="10"
-            android:textColor="#000000"
-
             android:hint="Category"
+
             android:textAlignment="center"
+            android:textColor="#000000"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/add_recipe_img" />
 
@@ -64,9 +64,9 @@
             android:backgroundTint="#FCA14B"
             android:ems="10"
             android:hint="Time"
-            android:textColor="#000000"
-
             android:textAlignment="center"
+
+            android:textColor="#000000"
             app:layout_constraintEnd_toStartOf="@+id/add_recipe_level"
             app:layout_constraintStart_toEndOf="@+id/add_recipe_category"
             app:layout_constraintTop_toBottomOf="@+id/add_recipe_img" />
@@ -79,10 +79,10 @@
             android:background="#DFDDDD"
             android:backgroundTint="#FCA14B"
             android:ems="10"
-            android:textColor="#000000"
-
             android:hint="level"
+
             android:textAlignment="center"
+            android:textColor="#000000"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/add_recipe_img" />
 
@@ -116,6 +116,17 @@
             android:textColor="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/add_recipe_recipe" />
+
+        <ImageView
+            android:id="@+id/add_recipe_camera"
+            android:layout_width="58dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="120dp"
+            android:src="@drawable/camera"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.954"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/add_recipe_recipename" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
