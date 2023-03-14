@@ -1,10 +1,14 @@
 package com.example.cookbook.model;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.cookbook.MyApplication;
+import com.example.cookbook.NutritionPage;
+import com.example.cookbook.Register;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -48,14 +52,21 @@ public class NutritionModel {
             public void onResponse(Call<NutritionResponse> call, Response<NutritionResponse> response) {
                 if (response.isSuccessful()) {
                     NutritionResponse nutrition = response.body();
+                    if(nutrition.getTotalNutrients().getEnergy()!=null){
+                        Log.d("TAG", "----- searchNutrientInfo fail"+nutrition.getTotalNutrients());
+                        float sugar = nutrition.getTotalNutrients().getSugar().getQuantity();
+                        float protein = nutrition.getTotalNutrients().getProtein().getQuantity();
+                        float cholesterol = nutrition.getTotalNutrients().getCholesterol().getQuantity();
+                        data.setValue(nutrition.getTotalNutrients());
+                    }
+                    else  data.setValue(null);
                     // Extract the nutrient values from the NutritionResponse object
-                    float sugar = nutrition.getTotalNutrients().getSugar().getQuantity();
-                    float protein = nutrition.getTotalNutrients().getProtein().getQuantity();
-                    float cholesterol = nutrition.getTotalNutrients().getCholesterol().getQuantity();
-                    data.setValue(nutrition.getTotalNutrients());
+
 //                float kcal = nutrition.getCalories();
                 } else {
                     Log.d("TAG", "----- searchNutrientInfo response error");
+//                    Toast.makeText(MyApplication.getMyContext(),"not found",Toast.LENGTH_SHORT).show();
+                    data.setValue(null);
                 }
             }
 
@@ -63,6 +74,9 @@ public class NutritionModel {
                 @Override
                 public void onFailure (Call < NutritionResponse > call, Throwable t){
                     Log.d("TAG", "----- searchNutrientInfo fail");
+                    data.setValue(null);
+//                    Toast.makeText(MyApplication.getMyContext(),"not found",Toast.LENGTH_SHORT).show();
+
                 }
 
         });

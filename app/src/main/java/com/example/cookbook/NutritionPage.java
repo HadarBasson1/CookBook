@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.cookbook.databinding.FragmentNutritionApiBinding;
 import com.example.cookbook.databinding.FragmentRecipePageBinding;
@@ -54,6 +55,16 @@ public class NutritionPage extends Fragment {
         // Inflate the layout for this fragment
         binding = FragmentNutritionApiBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
+        binding.nutritionEnergy.setVisibility(View.GONE);
+        binding.nutritionProtein.setVisibility(View.GONE);
+        binding.nutritionCarbs.setVisibility(View.GONE);
+        binding.nutritionSuger.setVisibility(View.GONE);
+        binding.nutritionFiber.setVisibility(View.GONE);
+        binding.nutritionFat.setVisibility(View.GONE);
+        binding.nutritionColesterol.setVisibility(View.GONE);
+        binding.nutritionName.setVisibility(View.GONE);
+
+
 
 
         binding.nutritionBtn.setOnClickListener(new View.OnClickListener() {
@@ -62,15 +73,29 @@ public class NutritionPage extends Fragment {
                 String value = String.valueOf(binding.nutritionSearchTV.getText());
                 LiveData<NutrientInfo> data = NutritionModel.instance.searchInfoByTitle("100 gram "+value);
                 data.observe(getViewLifecycleOwner(),info->{
+                    if (info != null) {
+                        binding.nutritionName.setText(value);
+                        binding.nutritionEnergy.setText("Energy:  "+ info.getEnergy().getQuantity()+" "+info.getEnergy().getUnit());
+                        binding.nutritionProtein.setText("Protein:  "+ info.getProtein().getQuantity()+" "+info.getProtein().getUnit());
+                        binding.nutritionCarbs.setText("Carbs:  "+ info.getCarbohydrates().getQuantity()+" "+info.getCarbohydrates().getUnit());
+                        binding.nutritionSuger.setText("Sugar:  "+ info.getSugar().getQuantity()+" "+info.getSugar().getUnit());
+                        binding.nutritionFiber.setText("Fiber:  "+ info.getFiber().getQuantity()+" "+info.getFiber().getUnit());
+                        binding.nutritionFat.setText("Fat:  "+ info.getFat().getQuantity()+" "+info.getFat().getUnit());
+                        binding.nutritionColesterol.setText("Cholesterol:  "+ info.getCholesterol().getQuantity()+" "+info.getCholesterol().getUnit());
+                        binding.nutritionEnergy.setVisibility(View.VISIBLE);
+                        binding.nutritionProtein.setVisibility(View.VISIBLE);
+                        binding.nutritionCarbs.setVisibility(View.VISIBLE);
+                        binding.nutritionSuger.setVisibility(View.VISIBLE);
+                        binding.nutritionFiber.setVisibility(View.VISIBLE);
+                        binding.nutritionFat.setVisibility(View.VISIBLE);
+                        binding.nutritionColesterol.setVisibility(View.VISIBLE);
+                        binding.nutritionName.setVisibility(View.VISIBLE);
+                    }
+
+                    else     Toast.makeText(MyApplication.getMyContext(),"not found information about this food,please search again!",Toast.LENGTH_SHORT).show();
 //                    Log.d("TAG","*****************************************************" + info.getEnergy().getQuantity()+" "+info.getEnergy().getUnit() +"**********************************************************");
-                    binding.nutritionName.setText(value);
-                    binding.nutritionEnergy.setText("Energy:  "+ info.getEnergy().getQuantity()+" "+info.getEnergy().getUnit());
-                    binding.nutritionProtein.setText("Protein:  "+ info.getProtein().getQuantity()+" "+info.getProtein().getUnit());
-                    binding.nutritionCarbs.setText("Carbs:  "+ info.getCarbohydrates().getQuantity()+" "+info.getCarbohydrates().getUnit());
-                    binding.nutritionSuger.setText("Sugar:  "+ info.getSugar().getQuantity()+" "+info.getSugar().getUnit());
-                    binding.nutritionFiber.setText("Fiber:  "+ info.getFiber().getQuantity()+" "+info.getFiber().getUnit());
-                    binding.nutritionFat.setText("Fat:  "+ info.getFat().getQuantity()+" "+info.getFat().getUnit());
-                    binding.nutritionColesterol.setText("Cholesterol:  "+ info.getCholesterol().getQuantity()+" "+info.getCholesterol().getUnit());
+
+
                 });
             }
         });

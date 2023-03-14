@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.cookbook.databinding.FragmentHomeBinding;
 import com.example.cookbook.databinding.FragmentRecipePageBinding;
+import com.squareup.picasso.Picasso;
 
 
 public class RecipePage extends Fragment {
@@ -59,6 +61,14 @@ public class RecipePage extends Fragment {
         binding.recipePageCategory.setText(RecipePageArgs.fromBundle(getArguments()).getCategory());
         binding.recipePageDuraion.setText(RecipePageArgs.fromBundle(getArguments()).getDuration());
         binding.recipePageInstructions.setText(RecipePageArgs.fromBundle(getArguments()).getInstructions());
+        String img=RecipePageArgs.fromBundle(getArguments()).getImgUrl();
+        Log.d("TAG","*****************************************************" + img);
+
+        if (img != null && img.length() > 5) {
+            Picasso.get().load(img).placeholder(R.drawable.salmon).into(binding.recipePageImgUrl);
+        }else{
+            binding.recipePageImgUrl.setImageResource(R.drawable.salmon);
+        }
 
 
 
