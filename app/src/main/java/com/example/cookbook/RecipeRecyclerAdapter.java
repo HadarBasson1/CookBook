@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cookbook.model.Model;
@@ -20,7 +21,7 @@ import java.util.List;
 class RecipeViewHolder extends RecyclerView.ViewHolder{
     TextView user_name;
     TextView title;
-    ImageView avatar_recipe;
+    ImageView avatar_recipe,editbtn;
     ImageView avatar_user;
     List<Recipe> data;
 //    ImageView avatarImage;
@@ -31,6 +32,7 @@ class RecipeViewHolder extends RecyclerView.ViewHolder{
         title = itemView.findViewById(R.id.recipe_card_row_title);
         avatar_recipe = itemView.findViewById(R.id.recipe_card_row_img);
         avatar_user = itemView.findViewById(R.id.home_user_img);
+        editbtn=itemView.findViewById(R.id.mylist_edit_btn);
 
 //       cb = itemView.findViewById(R.id.studentlistrow_cb);
 //       cb.setOnClickListener(new View.OnClickListener() {
@@ -41,6 +43,9 @@ class RecipeViewHolder extends RecyclerView.ViewHolder{
 ////                st.cb = cb.isChecked();
 //            }
 //       });
+
+
+
         itemView.setOnClickListener(new View.OnClickListener() {
            @Override
             public void onClick(View view) {
@@ -65,6 +70,14 @@ class RecipeViewHolder extends RecyclerView.ViewHolder{
                 avatar_recipe.setImageResource(R.drawable.salmon);
             }
 
+        });
+
+        editbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MyRecipeListDirections.ActionMyRecipeListToEditRecipePage action = MyRecipeListDirections.actionMyRecipeListToEditRecipePage(recipe.title, recipe.imgUrl, recipe.category, recipe.duration, recipe.difficulty, recipe.instructions);
+                Navigation.findNavController(v).navigate(action);
+            }
         });
 
 //        user_name.setText(recipe.editor);

@@ -85,9 +85,10 @@ public class AddRecipe extends Fragment {
             String category = binding.addRecipeCategory.getText().toString();
             String duration = binding.addRecipeTime.getText().toString();
             String level = binding.addRecipeLevel.getText().toString();
+            String inst=binding.addRecipeInstructions.getText().toString();
             SharedPreferences sharedPref = MyApplication.getMyContext().getSharedPreferences("TAG", Context.MODE_PRIVATE);
             String id=sharedPref.getString("ID_USER", "user_id");
-            Recipe recipe = new Recipe(title,category,level,duration,id,"");
+            Recipe recipe = new Recipe(title,category,level,duration,id,"",inst);
             if (isAvatarSelected){
                 binding.addRecipeImg.setDrawingCacheEnabled(true);
                 binding.addRecipeImg.buildDrawingCache();
@@ -109,13 +110,13 @@ public class AddRecipe extends Fragment {
 
 //        binding.cancellBtn.setOnClickListener(view1 -> Navigation.findNavController(view1).popBackStack(R.id.studentsListFragment,false));
 
-        binding.addRecipeImg.setOnClickListener(view1->{
+        binding.addRecipeCamera.setOnClickListener(view1->{
             cameraLauncher.launch(null);
         });
 
-//        binding.galleryButton.setOnClickListener(view1->{
-//            galleryLauncher.launch("image/*");
-//        });
+        binding.addRecipeImg.setOnClickListener(view1->{
+            galleryLauncher.launch("image/*");
+        });
         return view;
     }
 }

@@ -144,6 +144,25 @@ public class FirebaseModel {
     }
 
 
+    public void updateRecipe(String title, String category, String time, String level, String inst, String imgUrl, Model.Listener<Void> listener) {
+        DocumentReference user_update = db.collection(Recipe.COLLECTION).document(title);
+        user_update
+                .update("avatar",imgUrl,"category", category,"difficulty",level,"duration",time,"title",title,"instructions",inst)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        listener.onComplete(null);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        listener.onComplete(null);
+                    }
+                });
+    }
+
+
 
     void uploadImage(String name, Bitmap bitmap, Model.Listener<String> listener){
         StorageReference storageRef = storage.getReference();
@@ -195,4 +214,6 @@ public class FirebaseModel {
         });
 
     }
+
+
 }

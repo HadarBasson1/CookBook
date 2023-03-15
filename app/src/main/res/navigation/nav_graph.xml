@@ -97,5 +97,31 @@
         <action
             android:id="@+id/action_myRecipeList_to_recipePage"
             app:destination="@id/recipePage" />
+        <action
+            android:id="@+id/action_myRecipeList_to_editRecipePage"
+            app:destination="@id/editRecipePage" />
+    </fragment>
+    <fragment
+        android:id="@+id/editRecipePage"
+        android:name="com.example.cookbook.EditRecipePage"
+        android:label="Edit Recipe">
+        <argument
+            android:name="title"
+            app:argType="string" />
+        <argument
+            android:name="img_url"
+            app:argType="string" />
+        <argument
+            android:name="category"
+            app:argType="string" />
+        <argument
+            android:name="time"
+            app:argType="string" />
+        <argument
+            android:name="level"
+            app:argType="string" />
+        <argument
+            android:name="Instruction"
+            app:argType="string" />
     </fragment>
 </navigation>

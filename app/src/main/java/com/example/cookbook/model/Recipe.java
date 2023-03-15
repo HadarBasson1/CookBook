@@ -24,18 +24,20 @@ public class Recipe {
     public String duration="";
     public String editor="";
     public String imgUrl="";
+    public String instructions="";
     public Long lastUpdated=0L;
 
     public Recipe(){
     }
 
-    public Recipe(String title, String category, String difficulty, String duration, String editor, String imgUrl) {
+    public Recipe(String title, String category, String difficulty, String duration, String editor, String imgUrl,String instructions) {
         this.title = title;
         this.category = category;
         this.difficulty = difficulty;
         this.duration = duration;
         this.editor = editor;
         this.imgUrl = imgUrl;
+        this.instructions=instructions;
     }
 
 
@@ -45,6 +47,7 @@ public class Recipe {
     static final String DURATION = "duration";
     static final String EDITOR = "editor";
     static final String AVATAR = "avatar";
+    static final String INSTRUCTIONS = "instructions";
     static final String COLLECTION = "recipes";
     static final String LAST_UPDATED = "lastUpdated";
     static final String LOCAL_LAST_UPDATED = "recipes_local_last_update";
@@ -57,7 +60,8 @@ public class Recipe {
         String duration = (String)json.get(DURATION);
         String editor = (String)json.get(EDITOR);
         String avatar = (String)json.get(AVATAR);
-        Recipe rc = new Recipe(title,category,difficulty,duration,editor,avatar);
+        String instructions = (String)json.get(INSTRUCTIONS);
+        Recipe rc = new Recipe(title,category,difficulty,duration,editor,avatar,instructions);
         try{
             Timestamp time = (Timestamp) json.get(LAST_UPDATED);
             rc.setLastUpdated((long) time.getSeconds());
@@ -99,6 +103,10 @@ public class Recipe {
         return lastUpdated;
     }
 
+    public String getInstructions() {
+        return instructions;
+    }
+
     public void setTitle(String title) {
         this.title = title;
     }
@@ -127,7 +135,11 @@ public class Recipe {
         this.lastUpdated = lastUpdated;
     }
 
-//
+    public void setInstructions(String instructions) {
+        this.instructions = instructions;
+    }
+
+    //
     public static Long getLocalLastUpdate() {
         SharedPreferences sharedPref = MyApplication.getMyContext().getSharedPreferences("TAG", Context.MODE_PRIVATE);
         return sharedPref.getLong(LOCAL_LAST_UPDATED, 0);
@@ -148,6 +160,7 @@ public class Recipe {
         json.put(DURATION, getDuration());
         json.put(EDITOR, getEditor());
         json.put(AVATAR, getImgUrl());
+        json.put(INSTRUCTIONS, getInstructions());
         json.put(LAST_UPDATED, FieldValue.serverTimestamp());
         return json;
     }

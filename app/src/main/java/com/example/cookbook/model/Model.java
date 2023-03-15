@@ -39,6 +39,7 @@ public class Model {
 
 
 
+
     public interface Listener<T>{
         void onComplete(T data);
     }
@@ -245,6 +246,17 @@ public class Model {
             @Override
             public void onComplete(Void data) {
                 refreshAllUsers();
+                listener.onComplete(null);
+            }
+        });
+    }
+
+
+    public void updateRecipe(String title, String category, String time, String level, String inst, String imgUrl, Listener<Void> listener) {
+        firebaseModel.updateRecipe(title, category, time, level,inst,imgUrl, new Listener<Void>() {
+            @Override
+            public void onComplete(Void data) {
+                refreshAllRecipes();
                 listener.onComplete(null);
             }
         });

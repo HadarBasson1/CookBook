@@ -87,10 +87,10 @@
             app:layout_constraintTop_toBottomOf="@+id/add_recipe_img" />
 
         <EditText
-            android:id="@+id/add_recipe_recipe"
-            android:layout_width="394dp"
-            android:layout_height="300dp"
-            android:layout_marginTop="12dp"
+            android:id="@+id/add_recipe_instructions"
+            android:layout_width="379dp"
+            android:layout_height="231dp"
+            android:layout_marginTop="8dp"
             android:ems="10"
 
             android:gravity="start|top"
@@ -99,7 +99,6 @@
 
             android:textColor="#000000"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.47"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/add_recipe_time" />
 
@@ -108,14 +107,14 @@
 
             android:layout_width="350dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="44dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="28dp"
             android:background="#DC2F02"
             android:fontFamily="@font/roboto_medium"
             android:text="SAVE"
             android:textColor="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/add_recipe_recipe" />
+            app:layout_constraintTop_toBottomOf="@+id/add_recipe_instructions" />
 
         <ImageView
             android:id="@+id/add_recipe_camera"
