@@ -75,7 +75,7 @@ class RecipeViewHolder extends RecyclerView.ViewHolder{
         editbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MyRecipeListDirections.ActionMyRecipeListToEditRecipePage action = MyRecipeListDirections.actionMyRecipeListToEditRecipePage(recipe.title, recipe.imgUrl, recipe.category, recipe.duration, recipe.difficulty, recipe.instructions);
+                MyRecipeListDirections.ActionMyRecipeListToEditRecipePage action = MyRecipeListDirections.actionMyRecipeListToEditRecipePage(recipe.title, recipe.imgUrl, recipe.category, recipe.duration, recipe.difficulty, recipe.instructions,recipe.key);
                 Navigation.findNavController(v).navigate(action);
             }
         });

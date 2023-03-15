@@ -86,9 +86,10 @@ public class AddRecipe extends Fragment {
             String duration = binding.addRecipeTime.getText().toString();
             String level = binding.addRecipeLevel.getText().toString();
             String inst=binding.addRecipeInstructions.getText().toString();
+            String key = RandomKeyGenerator.generateRandomKey();
             SharedPreferences sharedPref = MyApplication.getMyContext().getSharedPreferences("TAG", Context.MODE_PRIVATE);
             String id=sharedPref.getString("ID_USER", "user_id");
-            Recipe recipe = new Recipe(title,category,level,duration,id,"",inst);
+            Recipe recipe = new Recipe(title,category,level,duration,id,"",inst,key);
             if (isAvatarSelected){
                 binding.addRecipeImg.setDrawingCacheEnabled(true);
                 binding.addRecipeImg.buildDrawingCache();

@@ -252,8 +252,8 @@ public class Model {
     }
 
 
-    public void updateRecipe(String title, String category, String time, String level, String inst, String imgUrl, Listener<Void> listener) {
-        firebaseModel.updateRecipe(title, category, time, level,inst,imgUrl, new Listener<Void>() {
+    public void updateRecipe(String title, String category, String time, String level, String inst, String imgUrl,String key, Listener<Void> listener) {
+        firebaseModel.updateRecipe(title, category, time, level,inst,imgUrl,key, new Listener<Void>() {
             @Override
             public void onComplete(Void data) {
                 refreshAllRecipes();

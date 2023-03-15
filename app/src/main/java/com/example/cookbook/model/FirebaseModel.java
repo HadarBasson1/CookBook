@@ -105,7 +105,7 @@ public class FirebaseModel {
 //    }
 
     public void addRecipe(Recipe recipe, Model.Listener<Void> listener) {
-        db.collection(Recipe.COLLECTION).document(recipe.getTitle()).set(recipe.toJson())
+        db.collection(Recipe.COLLECTION).document(recipe.getKey()).set(recipe.toJson())
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
@@ -144,8 +144,8 @@ public class FirebaseModel {
     }
 
 
-    public void updateRecipe(String title, String category, String time, String level, String inst, String imgUrl, Model.Listener<Void> listener) {
-        DocumentReference user_update = db.collection(Recipe.COLLECTION).document(title);
+    public void updateRecipe(String title, String category, String time, String level, String inst, String imgUrl,String key, Model.Listener<Void> listener) {
+        DocumentReference user_update = db.collection(Recipe.COLLECTION).document(key);
         user_update
                 .update("avatar",imgUrl,"category", category,"difficulty",level,"duration",time,"title",title,"instructions",inst)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {

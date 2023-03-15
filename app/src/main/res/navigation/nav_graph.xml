@@ -123,5 +123,8 @@
         <argument
             android:name="Instruction"
             app:argType="string" />
+        <argument
+            android:name="key"
+            app:argType="string" />
     </fragment>
 </navigation>

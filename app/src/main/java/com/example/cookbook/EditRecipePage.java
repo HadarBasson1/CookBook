@@ -30,7 +30,7 @@ public class EditRecipePage extends Fragment {
     ActivityResultLauncher<String> galleryLauncher;
     String imgUrl;
     Boolean isAvatarSelected = false;
-
+    String key;
 
     public EditRecipePage() {
         // Required empty public constructor
@@ -69,7 +69,7 @@ public class EditRecipePage extends Fragment {
         // Inflate the layout for this fragment
         binding = FragmentEditRecipePageBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
-
+        key = EditRecipePageArgs.fromBundle(getArguments()).getKey();
         imagegallery=binding.editRecipeImg;
         imagecamera=binding.editRecipeCamera;
 
@@ -88,6 +88,7 @@ public class EditRecipePage extends Fragment {
         binding.editRecipeLevel.setText(EditRecipePageArgs.fromBundle(getArguments()).getLevel());
         binding.editRecipeInstructions.setText(EditRecipePageArgs.fromBundle(getArguments()).getInstruction());
         binding.editRecipeRecipename.setText(EditRecipePageArgs.fromBundle(getArguments()).getTitle());
+
         imgUrl = EditRecipePageArgs.fromBundle(getArguments()).getImgUrl();
         if (imgUrl != null && imgUrl.length() > 5) {
             Picasso.get().load(imgUrl).placeholder(R.drawable.salmon).into(binding.editRecipeImg);
@@ -105,6 +106,7 @@ public class EditRecipePage extends Fragment {
                 String level = binding.editRecipeLevel.getText().toString();
                 String inst = binding.editRecipeInstructions.getText().toString();
 
+
                 if (isAvatarSelected) {
                     binding.editRecipeImg.setDrawingCacheEnabled(true);
                     binding.editRecipeImg.buildDrawingCache();
@@ -115,7 +117,7 @@ public class EditRecipePage extends Fragment {
                         }
                     });
                 }
-                Model.instance().updateRecipe(title, category, time, level,inst, imgUrl, new Model.Listener<Void>() {
+                Model.instance().updateRecipe(title, category, time, level,inst, imgUrl,key, new Model.Listener<Void>() {
                     @Override
                     public void onComplete(Void data) {
                         Navigation.findNavController(v).navigate(R.id.myRecipeList);

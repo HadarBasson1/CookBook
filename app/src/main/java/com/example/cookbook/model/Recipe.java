@@ -18,19 +18,21 @@ import java.util.Map;
 public class Recipe {
     @PrimaryKey
     @NonNull
+    public String key="";
     public String title="";
     public String category="";
     public String difficulty="";
     public String duration="";
     public String editor="";
     public String imgUrl="";
+
     public String instructions="";
     public Long lastUpdated=0L;
 
     public Recipe(){
     }
 
-    public Recipe(String title, String category, String difficulty, String duration, String editor, String imgUrl,String instructions) {
+    public Recipe(String title, String category, String difficulty, String duration, String editor, String imgUrl,String instructions,String key) {
         this.title = title;
         this.category = category;
         this.difficulty = difficulty;
@@ -38,6 +40,7 @@ public class Recipe {
         this.editor = editor;
         this.imgUrl = imgUrl;
         this.instructions=instructions;
+        this.key=key;
     }
 
 
@@ -48,6 +51,7 @@ public class Recipe {
     static final String EDITOR = "editor";
     static final String AVATAR = "avatar";
     static final String INSTRUCTIONS = "instructions";
+    static final String KEY = "key";
     static final String COLLECTION = "recipes";
     static final String LAST_UPDATED = "lastUpdated";
     static final String LOCAL_LAST_UPDATED = "recipes_local_last_update";
@@ -61,7 +65,8 @@ public class Recipe {
         String editor = (String)json.get(EDITOR);
         String avatar = (String)json.get(AVATAR);
         String instructions = (String)json.get(INSTRUCTIONS);
-        Recipe rc = new Recipe(title,category,difficulty,duration,editor,avatar,instructions);
+        String key=(String)json.get(KEY);
+        Recipe rc = new Recipe(title,category,difficulty,duration,editor,avatar,instructions,key);
         try{
             Timestamp time = (Timestamp) json.get(LAST_UPDATED);
             rc.setLastUpdated((long) time.getSeconds());
@@ -107,6 +112,10 @@ public class Recipe {
         return instructions;
     }
 
+    public String getKey() {
+        return key;
+    }
+
     public void setTitle(String title) {
         this.title = title;
     }
@@ -125,6 +134,10 @@ public class Recipe {
 
     public void setEditor(String editor) {
         this.editor = editor;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 
     public void setImgUrl(String imgUrl) {
@@ -160,6 +173,7 @@ public class Recipe {
         json.put(DURATION, getDuration());
         json.put(EDITOR, getEditor());
         json.put(AVATAR, getImgUrl());
+        json.put(KEY, getKey());
         json.put(INSTRUCTIONS, getInstructions());
         json.put(LAST_UPDATED, FieldValue.serverTimestamp());
         return json;
