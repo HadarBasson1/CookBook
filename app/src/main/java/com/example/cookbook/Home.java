@@ -86,7 +86,7 @@ public class Home extends Fragment {
                 if (user.getImgUrl()  != null && user.getImgUrl().length() > 5) {
                     Picasso.get().load(user.getImgUrl()).placeholder(R.drawable.avatar).into(binding.homeUserImg);
                 }else{
-                    imageUser.setImageResource(R.drawable.avatar);
+                    binding.homeUserImg.setImageResource(R.drawable.avatar);
                 }
             }
 

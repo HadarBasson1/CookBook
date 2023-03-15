@@ -240,7 +240,7 @@ public class Model {
         });
     }
 
-    public void updateUser(String id,String name,String phone,String address, Listener<Void> listener) {
+    public void updateUser(String id,String name,String phone,String address,String imgUrl, Listener<Void> listener) {
         firebaseModel.updateUser(id, name, phone, address, new Listener<Void>() {
             @Override
             public void onComplete(Void data) {

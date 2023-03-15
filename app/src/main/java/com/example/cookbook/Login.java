@@ -36,6 +36,7 @@ public class Login extends AppCompatActivity {
         if(currentUser != null){
             String user_id=mAuth.getUid();
             Intent intent = new Intent(getApplicationContext(),MainActivityApp.class);
+
 //            intent.putExtra("props",new String[] {user_id});
             startActivity(intent);
 //            finish();
