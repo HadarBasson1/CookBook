@@ -99,7 +99,6 @@ public class Model {
     public void refreshFilterRecipes(String id){
         EventRecipesListLoadingState.setValue(LoadingState.LOADING);
         // get local last update
-
       Long localLastUpdate = Recipe.getLocalLastUpdate();
 
         // get all updated recorde from firebase since local last update
@@ -131,7 +130,6 @@ public class Model {
     public void refreshAllRecipes(){
         EventRecipesListLoadingState.setValue(LoadingState.LOADING);
         // get local last update
-
         Long localLastUpdate = Recipe.getLocalLastUpdate();
 
         // get all updated recorde from firebase since local last update
@@ -246,7 +244,7 @@ public class Model {
         firebaseModel.updateUser(id, name, phone, address,imgUrl, new Listener<Void>() {
             @Override
             public void onComplete(Void data) {
-                exist_user = localDb.userDao().getPropsById(id);
+//                exist_user = localDb.userDao().getPropsById(id);
                 refreshAllUsers();
                 listener.onComplete(null);
             }

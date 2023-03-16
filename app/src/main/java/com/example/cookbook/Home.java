@@ -49,9 +49,9 @@ public class Home extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        mAuth = FirebaseAuth.getInstance();
-        user=Model.instance().getExsitUser().getValue();
-        SharedPreferences sharedPref = MyApplication.getMyContext().getSharedPreferences("TAG", Context.MODE_PRIVATE);
-        id= sharedPref.getString("ID_USER", "user_name");
+//        user=Model.instance().getExsitUser().getValue();
+//        SharedPreferences sharedPref = MyApplication.getMyContext().getSharedPreferences("TAG", Context.MODE_PRIVATE);
+//        id= sharedPref.getString("ID_USER", "user_name");
 
 //        Model.instance().getPropsById(mAuth.getUid(),props->{
 ////            setProps(props);
@@ -89,7 +89,6 @@ public class Home extends Fragment {
                     binding.homeUserImg.setImageResource(R.drawable.avatar);
                 }
             }
-
         });
 
 //        viewModel.getUser().observe(getViewLifecycleOwner(), exist_user -> {
@@ -132,7 +131,11 @@ public class Home extends Fragment {
         ImageView nutrition = view.findViewById(R.id.home_nutrition_btn);
 
 
-
+        Model.instance().EventUsersListLoadingState.observe(getViewLifecycleOwner(), status->{
+            if(status == Model.LoadingState.LOADING)
+                binding.homeProgressBar.setVisibility(View.VISIBLE);
+            else binding.homeProgressBar.setVisibility(View.GONE);
+        });
 
         edit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -178,7 +181,7 @@ public class Home extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        Model.instance().refreshAllUsers();
+//        Model.instance().refreshAllUsers();
     }
 
     @Override

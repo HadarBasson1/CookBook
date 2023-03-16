@@ -101,10 +101,14 @@ public class EditUser extends Fragment {
         });
 
 
+
+
+
         binding.editPageSaveBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
+                binding.editPageProgressBar.setVisibility(View.VISIBLE);
                 String name = binding.editPageName.getText().toString();
                 String phone = binding.editPagePhone.getText().toString();
                 String address = binding.editPageAddress.getText().toString();
@@ -113,6 +117,7 @@ public class EditUser extends Fragment {
                     binding.editPageImg.buildDrawingCache();
                     Bitmap bitmap = ((BitmapDrawable) binding.editPageImg.getDrawable()).getBitmap();
 //                    String key_img= RandomKeyGenerator.generateRandomKey();
+                    Model.instance().EventUsersListLoadingState.setValue(Model.LoadingState.LOADING);
                     Model.instance().uploadImage(user.id, bitmap, url -> {
                         if (url != null) {
                             Picasso.get().invalidate(url); // clear the cache for the old URL
@@ -122,12 +127,21 @@ public class EditUser extends Fragment {
                                 Model.instance().updateUser(user.id, name, phone, address,user.imgUrl, new Model.Listener<Void>() {
                                     @Override
                                     public void onComplete(Void data) {
+                                        binding.editPageProgressBar.setVisibility(View.GONE);
                                         Navigation.findNavController(v).navigate(R.id.action_global_home_fragment);
                                     }
                                 });
                     }
 
                     );
+                }else{
+                    Model.instance().updateUser(user.id, name, phone, address,user.imgUrl, new Model.Listener<Void>() {
+                        @Override
+                        public void onComplete(Void data) {
+                            binding.editPageProgressBar.setVisibility(View.GONE);
+                            Navigation.findNavController(v).navigate(R.id.action_global_home_fragment);
+                        }
+                    });
                 }
 
             }
