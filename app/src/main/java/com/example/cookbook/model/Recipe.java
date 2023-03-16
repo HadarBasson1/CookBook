@@ -26,12 +26,13 @@ public class Recipe {
     public String editor="";
     public String imgUrl="";
     public String instructions="";
+    public String isDeleted="";
     public Long lastUpdated=0L;
 
     public Recipe(){
     }
 
-    public Recipe(String title, String category, String difficulty, String duration, String editor, String imgUrl,String instructions,String key) {
+    public Recipe(String title, String category, String difficulty, String duration, String editor, String imgUrl,String instructions,String key,String isDeleted) {
         this.title = title;
         this.category = category;
         this.difficulty = difficulty;
@@ -40,6 +41,7 @@ public class Recipe {
         this.imgUrl = imgUrl;
         this.instructions=instructions;
         this.key=key;
+        this.isDeleted=isDeleted;
     }
 
 
@@ -52,6 +54,7 @@ public class Recipe {
     static final String INSTRUCTIONS = "instructions";
     static final String KEY = "key";
     static final String COLLECTION = "recipes";
+    static final String IS_DELETED = "isDeleted";
     static final String LAST_UPDATED = "lastUpdated";
     static final String LOCAL_LAST_UPDATED = "recipes_local_last_update";
 
@@ -65,7 +68,8 @@ public class Recipe {
         String avatar = (String)json.get(AVATAR);
         String instructions = (String)json.get(INSTRUCTIONS);
         String key=(String)json.get(KEY);
-        Recipe rc = new Recipe(title,category,difficulty,duration,editor,avatar,instructions,key);
+        String isDeleted=(String) json.get(IS_DELETED);
+        Recipe rc = new Recipe(title,category,difficulty,duration,editor,avatar,instructions,key,isDeleted);
         try{
             Timestamp time = (Timestamp) json.get(LAST_UPDATED);
             rc.setLastUpdated((long) time.getSeconds());
@@ -115,6 +119,10 @@ public class Recipe {
         return key;
     }
 
+    public String getDeleted() {
+        return isDeleted;
+    }
+
     public void setTitle(String title) {
         this.title = title;
     }
@@ -137,6 +145,10 @@ public class Recipe {
 
     public void setKey(String key) {
         this.key = key;
+    }
+
+    public void setDeleted(String deleted) {
+        isDeleted = deleted;
     }
 
     public void setImgUrl(String imgUrl) {
@@ -173,6 +185,7 @@ public class Recipe {
         json.put(EDITOR, getEditor());
         json.put(AVATAR, getImgUrl());
         json.put(KEY, getKey());
+        json.put(IS_DELETED, getDeleted());
         json.put(INSTRUCTIONS, getInstructions());
         json.put(LAST_UPDATED, FieldValue.serverTimestamp());
         return json;

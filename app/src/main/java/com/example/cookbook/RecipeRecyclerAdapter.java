@@ -17,11 +17,12 @@ import com.example.cookbook.model.User;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 class RecipeViewHolder extends RecyclerView.ViewHolder{
     TextView user_name;
     TextView title;
-    ImageView avatar_recipe,editbtn;
+    ImageView avatar_recipe,editbtn,deletebtn;
     ImageView avatar_user;
     List<Recipe> data;
 //    ImageView avatarImage;
@@ -33,6 +34,7 @@ class RecipeViewHolder extends RecyclerView.ViewHolder{
         avatar_recipe = itemView.findViewById(R.id.recipe_card_row_img);
         avatar_user = itemView.findViewById(R.id.home_user_img);
         editbtn=itemView.findViewById(R.id.mylist_edit_btn);
+        deletebtn=itemView.findViewById(R.id.mylist_edit_delete);
 
 //       cb = itemView.findViewById(R.id.studentlistrow_cb);
 //       cb.setOnClickListener(new View.OnClickListener() {
@@ -80,6 +82,20 @@ class RecipeViewHolder extends RecyclerView.ViewHolder{
             }
         });
 
+        deletebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Model.instance().deleteRecipe(recipe.key, new Model.Listener<Void>() {
+                    @Override
+                    public void onComplete(Void data) {
+                        ///
+                    }
+                });
+            }
+        });
+
+
+
 //        user_name.setText(recipe.editor);
 //       cb.setChecked(st.cb);
 //        cb.setTag(pos);
@@ -95,6 +111,7 @@ class RecipeViewHolder extends RecyclerView.ViewHolder{
 public class RecipeRecyclerAdapter extends RecyclerView.Adapter<RecipeViewHolder>{
     OnItemClickListener listener;
     public boolean ifEditable=false;
+
 
     public void setIfEditable(boolean ifEditable) {
         this.ifEditable = ifEditable;
@@ -129,6 +146,7 @@ public class RecipeRecyclerAdapter extends RecyclerView.Adapter<RecipeViewHolder
     @Override
     public RecipeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view;
+
         if(ifEditable==true){
             Log.d("TAG","!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             view = inflater.inflate(R.layout.recipe_card_for_mylist,parent,false);

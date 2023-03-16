@@ -34,18 +34,18 @@
 
             <TextView
                 android:id="@+id/recipe_card_row_title"
-                android:layout_width="199dp"
-                android:layout_height="22dp"
+                android:layout_width="168dp"
+                android:layout_height="24dp"
                 android:fontFamily="@font/roboto_medium"
                 android:text="Recipe Name"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.157"
+                app:layout_constraintHorizontal_bias="0.125"
                 app:layout_constraintStart_toEndOf="@+id/home_user_img"
                 app:layout_constraintTop_toBottomOf="@+id/recipe_card_row_img"
-                app:layout_constraintVertical_bias="0.422" />
+                app:layout_constraintVertical_bias="0.432" />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/home_user_img"
@@ -87,6 +87,17 @@
                 app:layout_constraintHorizontal_bias="0.954"
                 app:layout_constraintStart_toStartOf="parent"
                 app:srcCompat="@drawable/pencil" />
+
+            <ImageView
+                android:id="@+id/mylist_edit_delete"
+                android:layout_width="53dp"
+                android:layout_height="54dp"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/mylist_edit_btn"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/recipe_card_row_title"
+                app:srcCompat="@drawable/remove" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>

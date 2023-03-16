@@ -55,7 +55,7 @@ public class Model {
     private LiveData<List<Recipe>> recipeList;
     public LiveData<List<Recipe>> getAllRecipes() {
         if(recipeList == null){
-            recipeList = localDb.recipeDao().getAll();
+            recipeList = localDb.recipeDao().getAll("false");
             refreshAllRecipes();
             refreshAllUsers();
         }
@@ -65,7 +65,7 @@ public class Model {
     private LiveData<List<Recipe>> filterList;
     public LiveData<List<Recipe>> getFilterRecipes(String id) {
         filterList=getAllRecipes();
-        filterList = localDb.recipeDao().getRecipeById(id);
+        filterList = localDb.recipeDao().getRecipeById(id,"false");
         return  filterList;
     }
 
@@ -108,7 +108,7 @@ public class Model {
                 Long time = localLastUpdate;
                 for(Recipe recipe:list){
                     // insert new records into ROOM
-                    if(recipe.getEditor()==id){
+                    if(recipe.getEditor()==id ){
                         localDb.recipeDao().insertAll(recipe);
                         if (time < recipe.getLastUpdated()){
                             time = recipe.getLastUpdated();
@@ -139,9 +139,13 @@ public class Model {
                 Long time = localLastUpdate;
                 for(Recipe recipe:list){
                     // insert new records into ROOM
-                    localDb.recipeDao().insertAll(recipe);
-                    if (time < recipe.getLastUpdated()){
-                        time = recipe.getLastUpdated();
+                    if (recipe.isDeleted!="false"){
+                    Log.d("TAG", recipe.key + recipe.isDeleted+"8888888888888888888888888888888888888888888888888888888888888888");
+                        localDb.recipeDao().insertAll(recipe);
+                        if (time < recipe.getLastUpdated()){
+                            time = recipe.getLastUpdated();
+                        }
+
                     }
                 }
                 try {
@@ -253,6 +257,16 @@ public class Model {
 
     public void updateRecipe(String title, String category, String time, String level, String inst, String imgUrl,String key, Listener<Void> listener) {
         firebaseModel.updateRecipe(title, category, time, level,inst,imgUrl,key, new Listener<Void>() {
+            @Override
+            public void onComplete(Void data) {
+                refreshAllRecipes();
+                listener.onComplete(null);
+            }
+        });
+    }
+
+    public void deleteRecipe(String key, Listener<Void> listener) {
+        firebaseModel.deleteRecipe(key, new Listener<Void>() {
             @Override
             public void onComplete(Void data) {
                 refreshAllRecipes();

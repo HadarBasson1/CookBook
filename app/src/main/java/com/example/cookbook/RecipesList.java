@@ -24,6 +24,7 @@ import com.example.cookbook.model.NutritionResponse;
 import com.example.cookbook.model.Recipe;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class RecipesList extends Fragment {
@@ -63,6 +64,7 @@ public class RecipesList extends Fragment {
         binding.progressBar.setVisibility(View.GONE);
 
         viewModel.getData().observe(getViewLifecycleOwner(),list->{
+//            List<Recipe> noDeleted = list.stream().filter(recipe -> recipe.isDeleted!="true").collect(Collectors.toList());
             adapter.setData(list);
         });
 

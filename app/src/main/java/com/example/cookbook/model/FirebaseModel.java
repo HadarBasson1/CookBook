@@ -217,4 +217,21 @@ public class FirebaseModel {
     }
 
 
+    public void deleteRecipe(String key, Model.Listener<Void> listener) {
+        DocumentReference deleted = db.collection(Recipe.COLLECTION).document(key);
+        deleted
+                .update("isDeleted","true","lastUpdated", FieldValue.serverTimestamp())
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        listener.onComplete(null);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        listener.onComplete(null);
+                    }
+                });
+    }
 }

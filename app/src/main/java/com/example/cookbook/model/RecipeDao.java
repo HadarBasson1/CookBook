@@ -11,14 +11,14 @@ import java.util.List;
 
 @Dao
 public interface RecipeDao {
-    @Query("select * from Recipe")
-    LiveData<List<Recipe>> getAll();
+    @Query("select * from Recipe where isDeleted = :noDeleted")
+    LiveData<List<Recipe>> getAll(String noDeleted);
 
     @Query("select * from Recipe where editor = :nameEditor")
     Recipe getRecipeByEditor(String nameEditor);
 
-    @Query("select * from Recipe where editor = :nameEditor")
-    LiveData<List<Recipe>> getRecipeById(String nameEditor);
+    @Query("select * from Recipe where editor = :nameEditor and isDeleted = :noDeleted" )
+    LiveData<List<Recipe>> getRecipeById(String nameEditor,String noDeleted);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(Recipe... recipes);

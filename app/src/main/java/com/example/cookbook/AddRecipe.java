@@ -89,7 +89,7 @@ public class AddRecipe extends Fragment {
             String key = RandomKeyGenerator.generateRandomKey();
             SharedPreferences sharedPref = MyApplication.getMyContext().getSharedPreferences("TAG", Context.MODE_PRIVATE);
             String id=sharedPref.getString("ID_USER", "user_id");
-            Recipe recipe = new Recipe(title,category,level,duration,id,"",inst,key);
+            Recipe recipe = new Recipe(title,category,level,duration,id,"",inst,key,"false");
             if (isAvatarSelected){
                 binding.addRecipeImg.setDrawingCacheEnabled(true);
                 binding.addRecipeImg.buildDrawingCache();
