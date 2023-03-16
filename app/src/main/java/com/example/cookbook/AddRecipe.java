@@ -94,7 +94,7 @@ public class AddRecipe extends Fragment {
                 binding.addRecipeImg.setDrawingCacheEnabled(true);
                 binding.addRecipeImg.buildDrawingCache();
                 Bitmap bitmap = ((BitmapDrawable) binding.addRecipeImg.getDrawable()).getBitmap();
-                Model.instance().uploadImage(title, bitmap, url->{
+                Model.instance().uploadImage(key, bitmap, url->{
                     if (url != null){
                         recipe.setImgUrl(url);
                     }

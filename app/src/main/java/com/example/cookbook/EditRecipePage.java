@@ -10,6 +10,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -111,18 +112,32 @@ public class EditRecipePage extends Fragment {
                     binding.editRecipeImg.setDrawingCacheEnabled(true);
                     binding.editRecipeImg.buildDrawingCache();
                     Bitmap bitmap = ((BitmapDrawable) binding.editRecipeImg.getDrawable()).getBitmap();
-                    Model.instance().uploadImage(title, bitmap, url -> {
+                    Model.instance().uploadImage(key, bitmap, url -> {
                         if (url != null) {
-                            imgUrl=url;
+                            //imgUrl=url;
+                            String imageUrl = url + System.currentTimeMillis();
+                            imgUrl=imageUrl;
+                        }
+                        Model.instance().updateRecipe(title, category, time, level,inst, imgUrl,key, new Model.Listener<Void>() {
+                            @Override
+                            public void onComplete(Void data) {
+                                Navigation.findNavController(v).popBackStack();
+//                                Navigation.findNavController(v).navigate(R.id.myRecipeList);
+                            }
+                        });
+                    });
+
+                }
+                else {
+                    Model.instance().updateRecipe(title, category, time, level,inst, imgUrl,key, new Model.Listener<Void>() {
+                        @Override
+                        public void onComplete(Void data) {
+                            Navigation.findNavController(v).popBackStack();
+//                            Navigation.findNavController(v).navigate(R.id.myRecipeList);
                         }
                     });
                 }
-                Model.instance().updateRecipe(title, category, time, level,inst, imgUrl,key, new Model.Listener<Void>() {
-                    @Override
-                    public void onComplete(Void data) {
-                        Navigation.findNavController(v).navigate(R.id.myRecipeList);
-                    }
-                });
+
             }
         });
 
