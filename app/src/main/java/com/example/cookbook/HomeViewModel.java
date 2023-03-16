@@ -7,10 +7,17 @@ import com.example.cookbook.model.Model;
 import com.example.cookbook.model.User;
 
 public class HomeViewModel extends ViewModel {
+
+
     private LiveData<User> user = Model.instance().getExsitUser();
 
     LiveData<User> getUser() {
         return user;
     }
-}
 
+
+    public void setUser(LiveData<User> user) {
+        this.user = user;
+    }
+
+    }

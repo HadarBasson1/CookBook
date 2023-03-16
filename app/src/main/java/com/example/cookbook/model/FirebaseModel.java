@@ -15,6 +15,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreSettings;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -124,11 +125,11 @@ public class FirebaseModel {
                 });
     }
 
-    public void updateUser(String id,String name,String phone,String address, Model.Listener<Void> listener){
+    public void updateUser(String id,String name,String phone,String address,String imgUrl, Model.Listener<Void> listener){
 
         DocumentReference user_update = db.collection(User.COLLECTION).document(id);
         user_update
-                .update("name",name,"address", address,"phone",phone)
+                .update("avatar",imgUrl,"name",name,"address", address,"phone",phone,"lastUpdated", FieldValue.serverTimestamp())
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
@@ -147,7 +148,7 @@ public class FirebaseModel {
     public void updateRecipe(String title, String category, String time, String level, String inst, String imgUrl,String key, Model.Listener<Void> listener) {
         DocumentReference user_update = db.collection(Recipe.COLLECTION).document(key);
         user_update
-                .update("avatar",imgUrl,"category", category,"difficulty",level,"duration",time,"title",title,"instructions",inst)
+                .update("avatar",imgUrl,"category", category,"difficulty",level,"duration",time,"title",title,"instructions",inst,"lastUpdated", FieldValue.serverTimestamp())
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
@@ -166,7 +167,7 @@ public class FirebaseModel {
 
     void uploadImage(String name, Bitmap bitmap, Model.Listener<String> listener){
         StorageReference storageRef = storage.getReference();
-        StorageReference imagesRef = storageRef.child("images/" + name + ".jpg");
+        StorageReference imagesRef = storageRef.child("images/" + name +".jpg");
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] data = baos.toByteArray();

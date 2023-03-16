@@ -77,6 +77,7 @@ public class Model {
             SharedPreferences sharedPref = MyApplication.getMyContext().getSharedPreferences("TAG", Context.MODE_PRIVATE);
             String id= sharedPref.getString("ID_USER", "user_name");
             exist_user = localDb.userDao().getPropsById(id);
+            refreshAllUsers();
         }
         return exist_user;
     }
@@ -242,15 +243,15 @@ public class Model {
     }
 
     public void updateUser(String id,String name,String phone,String address,String imgUrl, Listener<Void> listener) {
-        firebaseModel.updateUser(id, name, phone, address, new Listener<Void>() {
+        firebaseModel.updateUser(id, name, phone, address,imgUrl, new Listener<Void>() {
             @Override
             public void onComplete(Void data) {
+                exist_user = localDb.userDao().getPropsById(id);
                 refreshAllUsers();
                 listener.onComplete(null);
             }
         });
     }
-
 
     public void updateRecipe(String title, String category, String time, String level, String inst, String imgUrl,String key, Listener<Void> listener) {
         firebaseModel.updateRecipe(title, category, time, level,inst,imgUrl,key, new Listener<Void>() {

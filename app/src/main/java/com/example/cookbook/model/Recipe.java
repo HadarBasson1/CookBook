@@ -25,7 +25,6 @@ public class Recipe {
     public String duration="";
     public String editor="";
     public String imgUrl="";
-
     public String instructions="";
     public Long lastUpdated=0L;
 

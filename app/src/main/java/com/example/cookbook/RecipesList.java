@@ -101,6 +101,7 @@ public class RecipesList extends Fragment {
         viewModel = new ViewModelProvider(this).get( RecipesListViewModel.class);
     }
 
+
     void reloadData(){
         Model.instance().refreshAllRecipes();
         Model.instance().refreshAllUsers();

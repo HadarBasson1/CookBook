@@ -112,18 +112,24 @@ public class EditUser extends Fragment {
                     binding.editPageImg.setDrawingCacheEnabled(true);
                     binding.editPageImg.buildDrawingCache();
                     Bitmap bitmap = ((BitmapDrawable) binding.editPageImg.getDrawable()).getBitmap();
+//                    String key_img= RandomKeyGenerator.generateRandomKey();
                     Model.instance().uploadImage(user.id, bitmap, url -> {
                         if (url != null) {
-                            user.setImgUrl(url);
+                            Picasso.get().invalidate(url); // clear the cache for the old URL
+                            String imageUrl = url + System.currentTimeMillis();
+                            user.setImgUrl(imageUrl);
                         }
-                    });
-                }
-                Model.instance().updateUser(user.id, name, phone, address,"", new Model.Listener<Void>() {
-                    @Override
-                    public void onComplete(Void data) {
-                        Navigation.findNavController(v).navigate(R.id.action_global_home_fragment);
+                                Model.instance().updateUser(user.id, name, phone, address,user.imgUrl, new Model.Listener<Void>() {
+                                    @Override
+                                    public void onComplete(Void data) {
+                                        Navigation.findNavController(v).navigate(R.id.action_global_home_fragment);
+                                    }
+                                });
                     }
-                });
+
+                    );
+                }
+
             }
         });
 
