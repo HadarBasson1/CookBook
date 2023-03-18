@@ -54,9 +54,9 @@ public class NutritionModel {
                     NutritionResponse nutrition = response.body();
                     if(nutrition.getTotalNutrients().getEnergy()!=null){
                         Log.d("TAG", "----- searchNutrientInfo fail"+nutrition.getTotalNutrients());
-                        float sugar = nutrition.getTotalNutrients().getSugar().getQuantity();
-                        float protein = nutrition.getTotalNutrients().getProtein().getQuantity();
-                        float cholesterol = nutrition.getTotalNutrients().getCholesterol().getQuantity();
+//                        float sugar = nutrition.getTotalNutrients().getSugar().getQuantity();
+//                        float protein = nutrition.getTotalNutrients().getProtein().getQuantity();
+//                        float cholesterol = nutrition.getTotalNutrients().getCholesterol().getQuantity();
                         data.setValue(nutrition.getTotalNutrients());
                     }
                     else  data.setValue(null);

@@ -75,13 +75,13 @@ public class NutritionPage extends Fragment {
                 data.observe(getViewLifecycleOwner(),info->{
                     if (info != null) {
                         binding.nutritionName.setText(value);
-                        binding.nutritionEnergy.setText("Energy:  "+ info.getEnergy().getQuantity()+" "+info.getEnergy().getUnit());
-                        binding.nutritionProtein.setText("Protein:  "+ info.getProtein().getQuantity()+" "+info.getProtein().getUnit());
-                        binding.nutritionCarbs.setText("Carbs:  "+ info.getCarbohydrates().getQuantity()+" "+info.getCarbohydrates().getUnit());
-                        binding.nutritionSuger.setText("Sugar:  "+ info.getSugar().getQuantity()+" "+info.getSugar().getUnit());
-                        binding.nutritionFiber.setText("Fiber:  "+ info.getFiber().getQuantity()+" "+info.getFiber().getUnit());
-                        binding.nutritionFat.setText("Fat:  "+ info.getFat().getQuantity()+" "+info.getFat().getUnit());
-                        binding.nutritionColesterol.setText("Cholesterol:  "+ info.getCholesterol().getQuantity()+" "+info.getCholesterol().getUnit());
+                        if(info.getEnergy()!=null) binding.nutritionEnergy.setText("Energy:  "+ info.getEnergy().getQuantity()+" "+info.getEnergy().getUnit());
+                        if(info.getProtein()!=null) binding.nutritionProtein.setText("Protein:  "+ info.getProtein().getQuantity()+" "+info.getProtein().getUnit());
+                        if(info.getCarbohydrates()!=null) binding.nutritionCarbs.setText("Carbs:  "+ info.getCarbohydrates().getQuantity()+" "+info.getCarbohydrates().getUnit());
+                        if(info.getSugar()!=null) binding.nutritionSuger.setText("Sugar:  "+ info.getSugar().getQuantity()+" "+info.getSugar().getUnit());
+                        if(info.getFiber()!=null) binding.nutritionFiber.setText("Fiber:  "+ info.getFiber().getQuantity()+" "+info.getFiber().getUnit());
+                        if(info.getFat()!=null)binding.nutritionFat.setText("Fat:  "+ info.getFat().getQuantity()+" "+info.getFat().getUnit());
+                        if(info.getCholesterol()!=null)binding.nutritionColesterol.setText("Cholesterol:  "+ info.getCholesterol().getQuantity()+" "+info.getCholesterol().getUnit());
                         binding.nutritionEnergy.setVisibility(View.VISIBLE);
                         binding.nutritionProtein.setVisibility(View.VISIBLE);
                         binding.nutritionCarbs.setVisibility(View.VISIBLE);

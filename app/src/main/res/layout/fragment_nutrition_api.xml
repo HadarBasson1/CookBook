@@ -46,7 +46,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_medium"
-            android:text="Suger : 2 gr"
+            android:text="Suger : Does not exist"
             android:textColor="#000000"
 
 
@@ -61,7 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_medium"
-            android:text="Energey : 200 kcl"
+            android:text="Energey : Does not exist"
             android:textColor="#000000"
 
 
@@ -76,7 +76,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_medium"
-            android:text="Protein : 25 gr"
+            android:text="Protein : Does not exist"
             android:textColor="#000000"
 
 
@@ -91,7 +91,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_medium"
-            android:text="Carbs : 28 gr"
+            android:text="Carbs : Does not exist"
 
             android:textColor="#000000"
 
@@ -106,7 +106,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_medium"
-            android:text="Fat : 10 gr"
+            android:text="Fat : Does not exist"
 
             android:textColor="#000000"
 
@@ -122,7 +122,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="92dp"
             android:fontFamily="@font/roboto_medium"
-            android:text="colesterol : 2mg"
+            android:text="colesterol : Does not exist"
 
             android:textColor="#000000"
 
@@ -136,7 +136,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_medium"
-            android:text="Fiber : 2.6 gr"
+            android:text="Fiber : Does not exist"
 
             android:textColor="#000000"
 
