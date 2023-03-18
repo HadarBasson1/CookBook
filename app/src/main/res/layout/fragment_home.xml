@@ -143,7 +143,7 @@
             android:layout_height="35dp"
             android:layout_marginStart="48dp"
             android:fontFamily="@font/roboto_medium"
-            android:text="NUTRITIONAL INFORMATION "
+            android:text="Nutritional Information"
             android:textColor="#E85D04"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"

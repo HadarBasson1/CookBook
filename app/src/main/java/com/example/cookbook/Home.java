@@ -1,7 +1,6 @@
 package com.example.cookbook;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -9,10 +8,10 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -21,7 +20,6 @@ import android.widget.TextView;
 import com.example.cookbook.databinding.FragmentHomeBinding;
 import com.example.cookbook.model.Model;
 import com.example.cookbook.model.User;
-import com.google.firebase.firestore.FieldValue;
 import com.squareup.picasso.Picasso;
 
 ///**
@@ -48,6 +46,7 @@ public class Home extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
 //        mAuth = FirebaseAuth.getInstance();
 //        user=Model.instance().getExsitUser().getValue();
 //        SharedPreferences sharedPref = MyApplication.getMyContext().getSharedPreferences("TAG", Context.MODE_PRIVATE);
@@ -184,11 +183,19 @@ public class Home extends Fragment {
 //        Model.instance().refreshAllUsers();
     }
 
+//    @Override
+//    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+//        super.onCreateOptionsMenu(menu, inflater);
+//        menu.clear();
+//    }
+
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-//        super.onCreateOptionsMenu(menu, inflater);
-        menu.clear();
+        MenuItem homeMenuItem = menu.findItem(R.id.homeFragment);
+        homeMenuItem.setVisible(false);
     }
+
+
 
 //    public void setProps(String[] props) {
 //        this.props = props;

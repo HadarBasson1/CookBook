@@ -43,16 +43,12 @@ public class MainActivityApp extends AppCompatActivity {
 //        NavigationUI.setupWithNavController(navView,navController);
     }
 
-    int fragmentMenuId = 0;
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu,menu);
+        MenuItem homeMenuItem = menu.findItem(R.id.homeFragment);
+        homeMenuItem.setVisible(true);
         return super.onCreateOptionsMenu(menu);
-//        if (fragmentMenuId != 0){
-//            menu.removeItem(fragmentMenuId);
-//        }
-//        fragmentMenuId = 0;
-
     }
 
 
@@ -69,9 +65,9 @@ public class MainActivityApp extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
-        else{
-            fragmentMenuId = item.getItemId();
-            return NavigationUI.onNavDestinationSelected(item,navController);
+
+                else if(item.getItemId() == R.id.homeFragment){
+             navController.navigate(R.id.action_global_home_fragment);
         }
         return super.onOptionsItemSelected(item);
     }
