@@ -15,16 +15,18 @@
 
         <EditText
             android:id="@+id/nutrition_search_TV"
-            android:layout_width="345dp"
+            android:layout_width="402dp"
             android:layout_height="48dp"
+            android:layout_marginRight="30dp"
             android:background="#831919"
             android:hint="Search Food Info"
             android:queryHint="search information about food"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.122" />
+            app:layout_constraintVertical_bias="0.127" />
 
         <TextView
             android:id="@+id/nutrition_name"
@@ -146,8 +148,8 @@
 
         <TextView
             android:id="@+id/textView27"
-            android:layout_width="410dp"
-            android:layout_height="54dp"
+            android:layout_width="322dp"
+            android:layout_height="84dp"
             android:fontFamily="@font/roboto_medium"
             android:foregroundGravity="center_vertical|center|center_horizontal"
             android:gravity="center|center_horizontal|center_vertical"
@@ -158,10 +160,10 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/nutrition_search_TV"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.326"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.565" />
+            app:layout_constraintVertical_bias="0.421" />
 
         <Button
             android:id="@+id/nutrition_btn"

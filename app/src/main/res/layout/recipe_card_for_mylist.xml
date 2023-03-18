@@ -6,30 +6,40 @@
     android:layout_height="250dp">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:cardCornerRadius="12dp"
-        android:layout_margin="5dp"
+        android:id="@+id/cardView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
         android:elevation="12dp"
-        >
+        app:cardCornerRadius="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="210dp">
 
             <ImageView
                 android:id="@+id/recipe_card_row_img"
-                android:layout_width="403dp"
-                android:layout_height="133dp"
+                android:layout_width="373dp"
+                android:layout_height="128dp"
 
+                android:scaleType="centerCrop"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.018"
-                android:scaleType="centerCrop"
 
+                app:layout_constraintVertical_bias="0.0"
                 tools:srcCompat="@drawable/salmon" />
 
             <TextView
@@ -84,7 +94,7 @@
                 android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.954"
+                app:layout_constraintHorizontal_bias="0.878"
                 app:layout_constraintStart_toStartOf="parent"
                 app:srcCompat="@drawable/pencil" />
 
@@ -92,11 +102,12 @@
                 android:id="@+id/mylist_edit_delete"
                 android:layout_width="53dp"
                 android:layout_height="54dp"
+                android:layout_marginEnd="24dp"
                 android:layout_marginBottom="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/mylist_edit_btn"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/recipe_card_row_title"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/recipe_card_row_user_name"
                 app:srcCompat="@drawable/remove" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 

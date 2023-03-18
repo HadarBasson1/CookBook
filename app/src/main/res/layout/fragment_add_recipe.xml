@@ -43,9 +43,9 @@
 
         <EditText
             android:id="@+id/add_recipe_category"
-            android:layout_width="133dp"
+            android:layout_width="120dp"
             android:layout_height="48dp"
-            android:layout_marginStart="4dp"
+            android:layout_marginStart="16dp"
             android:background="#DFDDDD"
             android:backgroundTint="#FCA14B"
             android:ems="10"
@@ -58,7 +58,7 @@
 
         <EditText
             android:id="@+id/add_recipe_time"
-            android:layout_width="133dp"
+            android:layout_width="120dp"
             android:layout_height="48dp"
             android:background="#DFDDDD"
             android:backgroundTint="#FCA14B"
@@ -68,14 +68,15 @@
 
             android:textColor="#000000"
             app:layout_constraintEnd_toStartOf="@+id/add_recipe_level"
+            app:layout_constraintHorizontal_bias="0.277"
             app:layout_constraintStart_toEndOf="@+id/add_recipe_category"
             app:layout_constraintTop_toBottomOf="@+id/add_recipe_img" />
 
         <EditText
             android:id="@+id/add_recipe_level"
-            android:layout_width="133dp"
+            android:layout_width="120dp"
             android:layout_height="48dp"
-            android:layout_marginEnd="4dp"
+            android:layout_marginEnd="48dp"
             android:background="#DFDDDD"
             android:backgroundTint="#FCA14B"
             android:ems="10"
@@ -105,10 +106,10 @@
         <Button
             android:id="@+id/add_recipe_savebtn"
 
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
+            android:layout_width="326dp"
+            android:layout_height="48dp"
             android:layout_marginTop="4dp"
-            android:layout_marginEnd="28dp"
+            android:layout_marginEnd="48dp"
             android:background="#DC2F02"
             android:fontFamily="@font/roboto_medium"
             android:text="SAVE"
@@ -120,10 +121,10 @@
             android:id="@+id/add_recipe_camera"
             android:layout_width="58dp"
             android:layout_height="55dp"
-            android:layout_marginTop="120dp"
+            android:layout_marginTop="20dp"
             android:src="@drawable/camera"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.954"
+            app:layout_constraintHorizontal_bias="0.047"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/add_recipe_recipename" />
 
